@@ -32,8 +32,8 @@
 
     - https://prepros.io/
 
-    navigate to the directory where you want to install the compiler using the prepros ui this would be the directory where you have your 
-    `package.json` file or SRC file in this case
+    - navigate to the directory where you want to install the compiler using the prepros ui this would be the directory where you have 
+      your `package.json` file or SRC file in this case
 
     - write your css in the app.scss file. the compiler will automatically compile the scss to css on save.
 
