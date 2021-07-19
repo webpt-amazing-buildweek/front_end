@@ -56,3 +56,18 @@
 
     - communicate out with the team when you have merged to main so that they know to update their local repos with your changes
 
+### Starting up the initial testing server
+
+    - cd server
+    - npm install
+    - npm run start
+    - localhost:5000
+    - token: esfeyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NUIhkufemQifQ
+    - username: lambda
+    - password: school
+    - login endpoint: /api/login
+    - artists endpoint: /api/artists to test get, post, put, delete
+
+### When hitting the localhost:5000/api/artists endpoint without a token expect
+
+    'error': "User must be logged in to do that" code 403
