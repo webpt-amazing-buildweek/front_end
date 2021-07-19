@@ -28,7 +28,7 @@
     - Yup
         - npm install yup --save
 
-##SCSS Compiler
+### SCSS Compiler
 
     - https://prepros.io/
 
