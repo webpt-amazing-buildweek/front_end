@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchValue, getRecipe } from "../state/ReducerState/Actions";
+import { searchValue, getRecipe } from "../../state/_shared/middleware/api";
 import { AppRecipeCards } from "./index";
 import { Button } from "@material-ui/core";
 import ScrollToTop from "react-scroll-to-top";

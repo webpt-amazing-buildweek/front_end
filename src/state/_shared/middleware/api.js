@@ -1,5 +1,10 @@
 // please keep all the action creators and reducers in the same file
 
+import { FETCHING_API_START, FETCHING_API_SUCCESS, FETCHING_API_FAILURE, SEARCH_VALUE } from '../../actionTypes';
+import {apiInitialState} from '../store/index';
+import axios from 'axios';
+
+
 // action creators
 export const searchValue = (newSearch) => {
     //console.log("5. new searchValue is", newSearch);
@@ -35,7 +40,7 @@ export const getRecipe = (props) => (dispatch) => {
 // reducer
 
 //2. create a features reducer that takes in initialState, sets it equal to state, and takes in an action
-export const apiReducer = (state = initialState, action) => {
+export const apiReducer = (state = apiInitialState, action) => {
   //3. initialize switch statement
   switch (action.type) {
     case FETCHING_API_START: {
