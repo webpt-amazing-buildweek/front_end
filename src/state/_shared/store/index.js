@@ -5,10 +5,6 @@ export const apiInitialState = {
         status:API_IDLE,
         errMsg:""
       },
-      postSignUp:{
-        status:API_IDLE,
-        errMsg:""
-      },
       createUser:{
         status:API_IDLE,
         errMsg:""
