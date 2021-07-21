@@ -16,8 +16,7 @@ export const apiInitialState = {
 
 export const userInitialState = {
   id: "",
-  cart: [], //ids of the items go here
-  orders: [], //ids of the items go here
+  items: [], //ids of the items go here
   isOwner: false
 
 }
