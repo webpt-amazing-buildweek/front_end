@@ -1,9 +1,34 @@
 // This is where we will store all the states
-
+import {API_IDLE} from "./constants";
 export const apiInitialState = {
-    loading: false,
-    error: "",
-    searchValue: "",
+      postLogIn:{
+        status:API_IDLE,
+        errMsg:""
+      },
+      postSignUp:{
+        status:API_IDLE,
+        errMsg:""
+      },
+      createUser:{
+        status:API_IDLE,
+        errMsg:""
+      },
+      updateUser:{
+        status:API_IDLE,
+        errMsg:""
+      },
+      createItem:{
+        status:API_IDLE,
+        errMsg:""
+      },
+      updateItem:{
+        status:API_IDLE,
+        errMsg:""
+      },
+      deleteItem:{
+        status:API_IDLE,
+        errMsg:""
+      },
   };
 
 

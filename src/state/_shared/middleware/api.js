@@ -3,14 +3,49 @@
 import { FETCHING_API_START, FETCHING_API_SUCCESS, FETCHING_API_FAILURE, SEARCH_VALUE } from '../../actionTypes';
 import {apiInitialState} from '../store/index';
 import axios from 'axios';
+// endpoints:
+// /users
+// /users/:id
+// /items
+// /items/:id
 
+// /login
+// /signup
 
 // action creators
 export const searchValue = (newSearch) => {
     //console.log("5. new searchValue is", newSearch);
     return { type: SEARCH_VALUE, payload: newSearch };
   };
-  
+// login
+export const postLogIn = (formValues) => (dispatch) =>{
+
+};
+// signup
+export const postSignUp = (formValues) => (dispatch) => {
+
+};
+// post new users
+export const createUser = (formValues) => (dispatch) => {
+
+};
+// put user by id
+export const updateUser = (user,id) => (dispatch) => {
+
+}; 
+
+// post new items
+export const createItem = (item) => (dispatch) => {
+
+};
+// put item by id
+export const updateItem = (item,id) => (dispatch) => {
+
+};
+// delete item by id
+export const deleteItem = (id) => (dispatch) => {
+
+};
 export const getRecipe = (props) => (dispatch) => {
     //console.log("Incoming props.searchValue to actions = ", props);
     const options = {
