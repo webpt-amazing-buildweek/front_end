@@ -2,6 +2,7 @@ import "./App.css";
 import "tailwindcss/dist/tailwind.css";
 import React from "react";
 import { Nav, Home, User } from "./view/components/index";
+import PrivateRoute from "./view/PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 

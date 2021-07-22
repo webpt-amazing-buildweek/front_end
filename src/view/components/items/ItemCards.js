@@ -11,6 +11,7 @@ import { Button } from "@material-ui/core";
 import { LinearProgress } from "@material-ui/core";
 import ShareIcon from '@material-ui/icons/Share';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import { getItems } from "../../../state/_shared/middleware/api";
 
 
 const baseUri = "https://spoonacular.com/recipeImages/";
@@ -159,6 +160,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = { getRecipe };
+const mapDispatchToProps =  { getItems } ;
 
-export default connect(mapStateToProps)(Recipe);
+export default connect(mapStateToProps, mapDispatchToProps)(Recipe);

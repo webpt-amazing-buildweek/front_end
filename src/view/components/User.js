@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { searchValue } from "../../state/_shared/middleware/api";
+import { getItems } from "../../state/_shared/middleware/api";
 import  { ItemCards } from "../components/index";
 import { Button } from "@material-ui/core";
 import ScrollToTop from "react-scroll-to-top";
@@ -17,8 +17,8 @@ const User = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.searchValue(searchValues);
-    props.getRecipe(searchValues);
+    // props.searchValue(searchValues);
+    props.getItems(searchValues);
     setSearchValue('')
   };
 
@@ -60,10 +60,12 @@ const User = (props) => {
     </div>
   );
 };
+
+// Should be getItem here??
 const mapStateToProps = (state) => {
   //Replace new action creator here.
 
-  // getRecipe(state.searchValue);
+  getItems(state.searchValue);
   //console.log("searchValue being sent into getItem from item input", state.searchValue)
   return {
     searchValue: state.searchValue,
@@ -71,8 +73,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  // searchValue,
-  // getRecipe,
+  getItems
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);
