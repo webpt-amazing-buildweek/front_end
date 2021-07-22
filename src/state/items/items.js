@@ -1,6 +1,5 @@
-import { UPDATE_ITEMS, DELETE_ITEMS } from '../../actionTypes';
 import { ITEMS_RECEIVED, ITEM_CREATED, ITEM_DELETED, ITEM_UPDATED } from '../actionTypes';
-import {itemsInitialState} from '../store/index';
+import {itemsInitialState} from '../_shared/store/index';
 
 
 

@@ -20,15 +20,7 @@ import {axiosWithAuth} from "../../../common/utils/axiosWithAuth";
 
 // action creators
 
-const dummyLogIn = {
-  username:"chris",
-  password:"123456789"
-};
-const dummySignUp = {
-  username:"chris",
-  password:"123456789",
-  isOwner:true
-};
+
 
 
 // login
@@ -37,7 +29,7 @@ export const postLogIn = (formValues) => (dispatch) =>{
     status:API_START,
     api:"postLogIn"
   }});
-  axios.post("/users/login",dummyLogIn)
+  axios.post("/users/login",formValues)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
@@ -66,7 +58,7 @@ export const createUser = (formValues) => (dispatch) => {
     status:API_START,
     api:"createUser"
   }});
-  axios.post("/users/register",dummySignUp)
+  axios.post("/users/register",formValues)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,

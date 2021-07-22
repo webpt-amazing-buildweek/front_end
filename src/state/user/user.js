@@ -1,4 +1,4 @@
-import {userInitialState} from '../store/index';
+import {userInitialState} from '../_shared/store/index';
 import { USER_LOGGED_IN, USER_CREATED, USER_UPDATED, USER_LOGGED_OUT } from '../actionTypes';
 
 

@@ -13,7 +13,7 @@ import {
     deleteItem as _deleteItem
 } from "./_shared/middleware/api";
 
-import { logout } from "./user/user";
+import { logout as _logout } from "./user/user";
 
 
 // api user action creators
