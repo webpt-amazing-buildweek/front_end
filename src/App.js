@@ -1,7 +1,8 @@
 import "./App.css";
 import "tailwindcss/dist/tailwind.css";
-import React, { useEffect } from "react";
-import { Nav, Home } from "./view/components/index";
+import React from "react";
+import { Nav, Home, User } from "./view/components/index";
+import PrivateRoute from "./view/PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {createUser} from "./state/actions";
@@ -32,13 +33,13 @@ function App() {
       <Switch>
         <Route exact path={"/"} component={Home} />
         {/* <Route exact path={"/login"} component={} />
-        <Route exact path={"/signup"} component={} />
-        <Route exact path={"/user"} component={} />
-        <Route exact path={"/user/owner"} component={} />  */}
+        <Route exact path={"/signup"} component={} /> */}
+        <Route exact path={"/user"} component={User} />
+        {/* <Route exact path={"/user/owner"} component={} />  */}
 
 
-        {/* <Route path={"/about"} component={AppAbout} />
-        <Route path={"/chef"} component={AppChef} />
+        {/* <Route path={"/about"} component={AppAbout} /> */}
+        {/* <Route path={"/chef"} component={AppChef} />
         <Route path={"/recipes"} component={AppRecipes} />
         <Route path={'/nutrition'} component={AppNutrition}/>
         <Route path={'/cocktails'} component={AppCocktail}/> */}

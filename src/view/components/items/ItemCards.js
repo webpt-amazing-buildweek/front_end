@@ -11,6 +11,7 @@ import { Button } from "@material-ui/core";
 import { LinearProgress } from "@material-ui/core";
 import ShareIcon from '@material-ui/icons/Share';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import { getItems } from "../../../state/_shared/middleware/api";
 
 
 const baseUri = "https://spoonacular.com/recipeImages/";
@@ -150,15 +151,15 @@ const Recipe = (props) => {
     );
   }
 };
+//State key should be items here?
+const mapStateToProps = (state) => {
+  return {
+    loading: state.loading,
+    error: state.error,
+    recipe: state.recipe,
+  };
+};
 
-// const mapStateToProps = (state) => {
-//   return {
-//     loading: state.loading,
-//     error: state.error,
-//     recipe: state.recipe,
-//   };
-// };
+const mapDispatchToProps =  { getItems } ;
 
-// const mapDispatchToProps = { getRecipe };
-
-export default Recipe;
+export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
