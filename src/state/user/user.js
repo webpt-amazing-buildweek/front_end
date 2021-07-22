@@ -1,5 +1,5 @@
 import { UPDATE_USER, } from '../../actionTypes';
-import {userInitialState} from '../store/index';
+import { userInitialState } from '../store/index';
 import axios from 'axios';
 
 

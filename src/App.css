@@ -47,8 +47,8 @@ h3 {
   background-image: url("./assets/pasta.jpg");
 }
 
-.recipes-container {
-  background-image: url("./assets/recipe.jpg");
+.user-container {
+  background-image: url("./assets/tomato.jpg");
   background-size: cover;
   background-position: center center;
   height: 34rem;
