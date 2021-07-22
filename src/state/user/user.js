@@ -7,7 +7,7 @@ import { USER_LOGGED_IN, USER_CREATED, USER_UPDATED, USER_LOGGED_OUT } from '../
 //setUser
 export const logout=()=>{
   // remove token from localStorage
-  return
+  return {type:USER_LOGGED_OUT}
 };
 
 
