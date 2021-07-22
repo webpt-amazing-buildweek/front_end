@@ -4,9 +4,27 @@ import React from "react";
 import { Nav, Home, User } from "./view/components/index";
 import PrivateRoute from "./view/PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {createUser} from "./state/actions";
+
+// const dummyLogIn = {
+//   username:"chris",
+//   password:"123456789"
+// };
+const dummySignUp = {
+  username:"chris",
+  password:"123456789",
+  isOwner:true
+};
 
 
 function App() {
+  // this code is for testing api. remove later----
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(createUser(dummySignUp));
+  },[dispatch])
+  // --------
   return (
     <Router>
       <div className="App">
