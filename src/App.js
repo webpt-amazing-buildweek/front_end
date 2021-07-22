@@ -1,11 +1,29 @@
 import "./App.css";
 import "tailwindcss/dist/tailwind.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Nav, Home } from "./view/components/index";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {createUser} from "./state/actions";
+
+// const dummyLogIn = {
+//   username:"chris",
+//   password:"123456789"
+// };
+const dummySignUp = {
+  username:"chris",
+  password:"123456789",
+  isOwner:true
+};
 
 
 function App() {
+  // this code is for testing api. remove later----
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(createUser(dummySignUp));
+  },[dispatch])
+  // --------
   return (
     <Router>
       <div className="App">
