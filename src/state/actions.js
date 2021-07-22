@@ -62,7 +62,7 @@ export const updateItem = _updateItem;
 // id: number;
 // actions: API_STATUS_CHANGE
 // state changed: api
-export const updateItem = _updateItem;
+export const deleteItem = _updateItem;
 // args:
 // id: number;
 // actions: API_STATUS_CHANGE
