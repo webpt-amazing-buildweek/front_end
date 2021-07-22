@@ -35,6 +35,11 @@ export default function Nav() {
     setState({ left: false });
   };
 
+  // will handle logout then push to landing page
+  // const handleLogout = () => {
+
+  // }
+
   return (
     <>
       <AppBar

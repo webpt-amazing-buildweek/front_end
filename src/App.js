@@ -19,8 +19,8 @@ function App() {
         {/* <Route exact path={"/user/owner"} component={} />  */}
 
 
-        {/* <Route path={"/about"} component={AppAbout} />
-        <Route path={"/chef"} component={AppChef} />
+        {/* <Route path={"/about"} component={AppAbout} /> */}
+        {/* <Route path={"/chef"} component={AppChef} />
         <Route path={"/recipes"} component={AppRecipes} />
         <Route path={'/nutrition'} component={AppNutrition}/>
         <Route path={'/cocktails'} component={AppCocktail}/> */}
