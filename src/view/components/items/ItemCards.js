@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getRecipe } from "../../state/_shared/middleware/api";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -152,14 +151,14 @@ const Recipe = (props) => {
   }
 };
 
-const mapStateToProps = (state) => {
-  return {
-    loading: state.loading,
-    error: state.error,
-    recipe: state.recipe,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     loading: state.loading,
+//     error: state.error,
+//     recipe: state.recipe,
+//   };
+// };
 
-const mapDispatchToProps = { getRecipe };
+// const mapDispatchToProps = { getRecipe };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
+export default Recipe;
