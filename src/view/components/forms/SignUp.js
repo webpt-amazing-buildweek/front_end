@@ -46,7 +46,7 @@ const initialErrorValues = Object.keys(initialValues).reduce((acc, key) => {
     return acc;
 }, {});
 
-function SignUpForm(props) {
+function SignUp(props) {
     const history = useHistory();
     const [isValid, setIsValid] = useState(true);
     const [formValues, setFormValues] = useState(initialValues);
@@ -140,4 +140,4 @@ function SignUpForm(props) {
 
 
 
-export default SignUpForm;
+export default SignUp;

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchValue, getRecipe } from "../../state/_shared/middleware/api";
-import { AppRecipeCards } from "./index";
+// import { searchValue } from "../../state/_shared/middleware/api";
+// import { AppRecipeCards } from "./index";
 import { Button } from "@material-ui/core";
 import ScrollToTop from "react-scroll-to-top";
 
@@ -55,13 +55,15 @@ const Recipes = (props) => {
         </form>
       </div>
       <div className={"self-center bg-white text-white mt-32"}>
-        <AppRecipeCards />
+        {/* <AppRecipeCards /> */}
       </div>
     </div>
   );
 };
 const mapStateToProps = (state) => {
-  getRecipe(state.searchValue);
+  //Replace new action creator here.
+
+  // getRecipe(state.searchValue);
   //console.log("searchValue being sent into getRecipes from recipe input", state.searchValue)
   return {
     searchValue: state.searchValue,
@@ -70,7 +72,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   searchValue,
-  getRecipe,
+  // getRecipe,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
