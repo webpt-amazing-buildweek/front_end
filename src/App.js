@@ -13,11 +13,18 @@ function App() {
       </div>
       <Switch>
         <Route exact path={"/"} component={AppHome} />
-        <Route path={"/about"} component={AppAbout} />
+        {/* <Route exact path={"/login"} component={} />
+        <Route exact path={"/signup"} component={} />
+        <Route exact path={"/user"} component={} />
+        <Route exact path={"/user/owner"} component={} />  */}
+
+
+        {/* <Route path={"/about"} component={AppAbout} />
         <Route path={"/chef"} component={AppChef} />
         <Route path={"/recipes"} component={AppRecipes} />
         <Route path={'/nutrition'} component={AppNutrition}/>
-        <Route path={'/cocktails'} component={AppCocktail}/>
+        <Route path={'/cocktails'} component={AppCocktail}/> */}
+
 
         
       </Switch>
@@ -31,7 +38,7 @@ export default App;
 // /home
 // /login
 // /signup
-// 
+// /items/:id  //stretch goal
 
 
 // Private routes
