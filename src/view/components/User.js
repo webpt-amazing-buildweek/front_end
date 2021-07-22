@@ -27,7 +27,7 @@ const User = (props) => {
   return (
     <div className={"flex flex-col text-center"}>
       <ScrollToTop smooth />
-      <div className={"User-container bg-black w-screen h-screen"}>
+      <div className={"user-container bg-black w-screen h-screen"}>
         <form onSubmit={handleSubmit}>
           <h2 className={"mt-64 text-white text-6xl"}>Your Page</h2>
           <h3 className={"mx-auto mt-3 text-white text-xl "}>
@@ -50,7 +50,7 @@ const User = (props) => {
             style={{color: '#FFF'}}
             onclick={handleSubmit}
           >
-            Enter
+            Item Search
           </Button>{" "}
         </form>
       </div>
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => {
   //Replace new action creator here.
 
   // getRecipe(state.searchValue);
-  //console.log("searchValue being sent into getItem from recipe input", state.searchValue)
+  //console.log("searchValue being sent into getItem from item input", state.searchValue)
   return {
     searchValue: state.searchValue,
   };
