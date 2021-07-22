@@ -2,7 +2,6 @@ import "./App.css";
 import "tailwindcss/dist/tailwind.css";
 import React from "react";
 import { AppNav, AppHome, AppAbout, AppRecipes, AppChef, AppNutrition, AppCocktail } from "./view/components/index";
-import SignUp from './view/components/forms/SignUp'
 import { Nav, Home } from "./view/components/index";
 // >>>>>>> a907075f1b717cd5a6eada880005c018841b1a50
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";

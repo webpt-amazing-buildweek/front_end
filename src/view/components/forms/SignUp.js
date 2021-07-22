@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link, useHistory} from "react-router-dom";
+import * as yup from 'yup'
 
 const displayErrors=(formErrors)=>{
     return Object.keys(formErrors).map((key, i) => formErrors[key] === '' ? '' : <div key={i}> {formErrors[key]} </div>);
@@ -9,23 +10,19 @@ const handleChangeHelper=({event, schema, formValues, setFormValues, formErrors,
     const {name, value, checked, type} = event.target;
     const inputValue = type === 'checkbox' ? checked:value;
     const newFormValues = {...formValues, [name]: inputValue};
-    validateField(schema, name, inputValue, formErrors, setFormErrors); 
     validateForm(schema, newFormValues, setIsValid);
     setFormValues(newFormValues);
 };
-
-
 
 const handleSubmitHelper = (event) => {
     event.preventDefault();
 };
 
-
 const signUpFormSchema = yup.object().shape({
-    name:yup.string().required(isRequired('Name')),
-    email:yup.string().email(invalidEmail).required(isRequired('Email')),
+    name:yup.string().required('Name'),
+    email:yup.string().email().required('Email'),
     isOwner:yup.boolean(),
-    password:yup.string().min(8,'Password must have at least 8 characters').required(isRequired('Password')),
+    password:yup.string().min(8,'Password must have at least 8 characters').required('Password')
 });
 
 const validateForm=(schema,formValues,setIsValid)=>{
@@ -75,7 +72,6 @@ function SignUp(props) {
         history.push("/login");
     };
 
-    
     return (
         <div>
             <div>
