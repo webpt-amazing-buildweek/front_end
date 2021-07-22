@@ -20,7 +20,15 @@ import {axiosWithAuth} from "../../../common/utils/axiosWithAuth";
 
 // action creators
 
-
+const dummyLogIn = {
+  username:"chris",
+  password:"123456789"
+};
+const dummySignUp = {
+  username:"chris",
+  password:"123456789",
+  isOwner:true
+};
 
 // login
 export const postLogIn = (formValues) => (dispatch) =>{
@@ -28,12 +36,14 @@ export const postLogIn = (formValues) => (dispatch) =>{
     status:API_START,
     api:"postLogIn"
   }});
-  axios.post("/users/login",formValues)
+  axios.post("/users/login",dummyLogIn)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"postLogIn"}});
     // dispatch other actions
+    // dispatch USER_LOGGED_IN payload: res.data
+    // localStorage to store the token
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -53,13 +63,15 @@ export const createUser = (formValues) => (dispatch) => {
     status:API_START,
     api:"createUser"
   }});
-  axios.post("/users/register",formValues)
+  axios.post("/users/register",dummySignUp)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"createUser"
     }});
     // dispatch other actions
+    // dispatch USER_CREATED 
+    
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -71,6 +83,30 @@ export const createUser = (formValues) => (dispatch) => {
 };
 
 
+// get User, need id from backend somehow
+
+// export const getUser = (user,id) => (dispatch) => {
+//   dispatch({type:API_STATUS_CHANGE,payload:{
+//     status:API_START,
+//     api:"updateUser"
+//   }});
+//   axiosWithAuth().put(`/users/${id}`,user)
+//   .then((res)=>{
+//     dispatch({type:API_STATUS_CHANGE,payload:{
+//       status:API_SUCCESS,
+//       api:"updateUser"
+//     }});
+//     // dispatch other actions
+//     // dispatch USER_UPDATED
+//   })
+//   .catch((err)=>{
+//     dispatch({type:API_STATUS_CHANGE,payload:{
+//       status:API_FAILURE,
+//       api:"updateUser",
+//       errMsg:err
+//     }});
+//   });
+// }; 
 
 
 // put user by id
@@ -86,6 +122,7 @@ export const updateUser = (user,id) => (dispatch) => {
       api:"updateUser"
     }});
     // dispatch other actions
+    // dispatch USER_UPDATED
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -96,6 +133,29 @@ export const updateUser = (user,id) => (dispatch) => {
   });
 }; 
 
+// get items
+export const getItems = () => (dispatch) => {
+  dispatch({type:API_STATUS_CHANGE,payload:{
+    status:API_START,
+    api:"getItems"
+  }});
+  axiosWithAuth().get(`/items/`)
+  .then((res)=>{
+    dispatch({type:API_STATUS_CHANGE,payload:{
+      status:API_SUCCESS,
+      api:"getItems"
+    }});
+    // dispatch other actions
+    // dispatch ITEMS_RECEIVED
+  })
+  .catch((err)=>{
+    dispatch({type:API_STATUS_CHANGE,payload:{
+      status:API_FAILURE,
+      api:"createItem",
+      errMsg:err
+    }});
+  });
+};
 
 
 
@@ -112,6 +172,7 @@ export const createItem = (item) => (dispatch) => {
       api:"createItem"
     }});
     // dispatch other actions
+    // dispatch ITEM_CREATED
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -138,6 +199,7 @@ export const updateItem = (item,id) => (dispatch) => {
       api:"updateItem"
     }});
     // dispatch other actions
+    // dispatch ITEM_UPDATED
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -164,6 +226,7 @@ export const deleteItem = (id) => (dispatch) => {
       api:"deleteItem"
     }});
     // dispatch other actions
+    // dispatch ITEM_DELETED
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{

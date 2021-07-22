@@ -3,8 +3,10 @@
 // where we will combine all the reducers into a rootReducer
 import { combineReducers } from "redux";
 import { apiReducer } from "./_shared/middleware/api";
+import {userReducer} from "./user/user";
+import {itemsReducer} from "./items/items";
 export const rootReducer = combineReducers({
    api: apiReducer,
-// user:
-// item:
+   user: userReducer,
+   items: itemsReducer
 });

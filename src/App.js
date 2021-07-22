@@ -18,9 +18,23 @@ function App() {
         <Route path={"/recipes"} component={AppRecipes} />
         <Route path={'/nutrition'} component={AppNutrition}/>
         <Route path={'/cocktails'} component={AppCocktail}/>
+
+        
       </Switch>
     </Router>
   );
 }
 
 export default App;
+
+// Public routes
+// /home
+// /login
+// /signup
+// 
+
+
+// Private routes
+// /user  //display all items
+// /user/owner //only display owned items
+// /cart //stretch goal

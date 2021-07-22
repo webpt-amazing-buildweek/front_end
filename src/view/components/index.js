@@ -3,7 +3,7 @@ import Nav from "./Nav";
 import Chef from "./Chef";
 import Home from "./Home";
 import About from "./About";
-import Recipes from "./Recipes";
+import Recipes from "./Item";
 import Cocktail from "./Cocktail";
 import Nutrition from "./Nutrition";
 import RecipeCards from "./RecipeCards";
