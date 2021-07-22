@@ -151,14 +151,14 @@ const Recipe = (props) => {
   }
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     loading: state.loading,
-//     error: state.error,
-//     recipe: state.recipe,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    loading: state.loading,
+    error: state.error,
+    recipe: state.recipe,
+  };
+};
 
 // const mapDispatchToProps = { getRecipe };
 
-export default Recipe;
+export default connect(mapStateToProps)(Recipe);

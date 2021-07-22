@@ -1,7 +1,7 @@
 import "./App.css";
 import "tailwindcss/dist/tailwind.css";
 import React from "react";
-import { Nav, Home } from "./view/components/index";
+import { Nav, Home, User } from "./view/components/index";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
@@ -14,9 +14,9 @@ function App() {
       <Switch>
         <Route exact path={"/"} component={Home} />
         {/* <Route exact path={"/login"} component={} />
-        <Route exact path={"/signup"} component={} />
-        <Route exact path={"/user"} component={} />
-        <Route exact path={"/user/owner"} component={} />  */}
+        <Route exact path={"/signup"} component={} /> */}
+        <Route exact path={"/user"} component={User} />
+        {/* <Route exact path={"/user/owner"} component={} />  */}
 
 
         {/* <Route path={"/about"} component={AppAbout} />

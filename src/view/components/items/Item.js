@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 // import { searchValue } from "../../state/_shared/middleware/api";
-// import { AppRecipeCards } from "./index";
+import  { ItemCards } from "../index";
 import { Button } from "@material-ui/core";
 import ScrollToTop from "react-scroll-to-top";
 
-const Recipes = (props) => {
-  //initialize the recipes list
+const Item = (props) => {
+  //initialize the Item list
   const [searchValues, setSearchValue] = React.useState("");
 
 
@@ -27,9 +27,9 @@ const Recipes = (props) => {
   return (
     <div className={"flex flex-col text-center"}>
       <ScrollToTop smooth />
-      <div className={"recipes-container bg-black w-screen h-screen"}>
+      <div className={"Item-container bg-black w-screen h-screen"}>
         <form onSubmit={handleSubmit}>
-          <h2 className={"mt-64 text-white text-6xl"}>Recipes</h2>
+          <h2 className={"mt-64 text-white text-6xl"}>Your Items</h2>
           <h3 className={"mx-auto mt-3 text-white text-xl "}>
             Thousands of ideas await
           </h3>
@@ -55,7 +55,7 @@ const Recipes = (props) => {
         </form>
       </div>
       <div className={"self-center bg-white text-white mt-32"}>
-        {/* <AppRecipeCards /> */}
+        <ItemCards />
       </div>
     </div>
   );
@@ -64,15 +64,15 @@ const mapStateToProps = (state) => {
   //Replace new action creator here.
 
   // getRecipe(state.searchValue);
-  //console.log("searchValue being sent into getRecipes from recipe input", state.searchValue)
+  //console.log("searchValue being sent into getItem from recipe input", state.searchValue)
   return {
     searchValue: state.searchValue,
   };
 };
 
 const mapDispatchToProps = {
-  searchValue,
+  // searchValue,
   // getRecipe,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
+export default connect(mapStateToProps, mapDispatchToProps)(Item);

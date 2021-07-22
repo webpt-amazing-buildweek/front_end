@@ -51,7 +51,7 @@ export default function Nav() {
           </Button>
 
           <Link to="/">
-            <h1 className={" mt-6 ml-6 text-black text-4xl"}>Grubspace</h1>
+            <h1 className={" mt-6 ml-6 text-black text-4xl"}>Sauti Marketplace</h1>
           </Link>
         </div>
       </AppBar>
@@ -84,8 +84,8 @@ export default function Nav() {
             <ListItemIcon>
              <LocalDiningIcon />
             </ListItemIcon>
-            <Link to={"recipes"} onClick={handleDrawerClose}>
-              <ListItemText primary="Recipe Box" />
+            <Link to={"user"} onClick={handleDrawerClose}>
+              <ListItemText primary="User Marketplace" />
             </Link>
           </ListItem>
           <ListItem button>
