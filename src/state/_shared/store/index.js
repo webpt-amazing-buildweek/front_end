@@ -13,6 +13,10 @@ export const apiInitialState = {
         status:API_IDLE,
         errMsg:""
       },
+      getItems:{
+        status:API_IDLE,
+        errMsg:""
+      },
       createItem:{
         status:API_IDLE,
         errMsg:""
@@ -28,21 +32,14 @@ export const apiInitialState = {
   };
 
 
-// export const ownerInitalState = {
-//   id: "",
-//   items: [],//ids of the items go here
-
-
-// }
-
 export const userInitialState = {
-  id: "",
+  id: -1,
   items: [], //ids of the items go here
   isOwner: false
 
 }
 
 export const itemsInitialState = {
-  id: {},
-
+// key: item id
+// value: items
 }
