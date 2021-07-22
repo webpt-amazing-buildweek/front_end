@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-
+// Template Created 
 const PrivateRoute = (props) => {
     if (localStorage.getItem("token")) {
         // render the component and pass props

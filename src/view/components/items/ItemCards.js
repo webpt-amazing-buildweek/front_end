@@ -150,7 +150,7 @@ const Recipe = (props) => {
     );
   }
 };
-
+//State key should be items here?
 const mapStateToProps = (state) => {
   return {
     loading: state.loading,
