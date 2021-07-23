@@ -140,7 +140,7 @@ app.post('/api/items', authenticator, (req, res) => {
 
   items = [...items, item];
 
-  res.send(items);
+  res.send(item);
 });
 
 
@@ -168,7 +168,7 @@ app.put('/api/items/:id', authenticator, (req, res) => {
       item,
       ...items.slice(itemIndex + 1)
     ];
-    res.send(items);
+    res.send(item);
   } else {
     res.status(404).send({ msg: 'item not found' });
   }
@@ -179,7 +179,7 @@ app.delete('/api/items/:id', authenticator, (req, res) => {
 
   items = items.filter(f => f.id !== Number(id));
 
-  res.send(items);
+  res.send(`item ${id} deleted`);
 });
 
 function getNextId() {
