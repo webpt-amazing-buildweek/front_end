@@ -81,8 +81,8 @@ export default function Nav() {
             <ListItemIcon>
              <LibraryBooksIcon />
             </ListItemIcon>
-            <Link to={"chef"} onClick={handleDrawerClose}>
-              <ListItemText primary="Chef's Manifesto" />
+            <Link to={"signup"} onClick={handleDrawerClose}>
+              <ListItemText primary="Sign Up" />
             </Link>
           </ListItem>
           <ListItem button>

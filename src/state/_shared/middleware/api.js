@@ -58,7 +58,7 @@ export const createUser = (formValues) => (dispatch) => {
     status:API_START,
     api:"createUser"
   }});
-  axios.post("/users/register",formValues)
+  axios.post("https://localhost:5000/api/auth/register")
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
