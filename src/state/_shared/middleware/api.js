@@ -1,6 +1,11 @@
 // please keep all the action creators and reducers in the same file
 
-import { API_STATUS_CHANGE, ITEMS_RECEIVED, ITEM_CREATED, ITEM_DELETED, ITEM_UPDATED, USER_CREATED, USER_LOGGED_IN, USER_UPDATED } from '../../actionTypes';
+import { API_STATUS_CHANGE,
+  ITEMS_RECEIVED, 
+  USER_CREATED, 
+  USER_ITEMS_RECEIVED, 
+  USER_LOGGED_IN, 
+} from '../../actionTypes';
 import {
   API_START,
   API_SUCCESS,
@@ -9,6 +14,8 @@ import {
 import {apiInitialState} from '../store/index';
 import axios from 'axios';
 import {axiosWithAuth} from "../../../common/utils/axiosWithAuth";
+
+const baseURL = "https://saudi-market-app.herokuapp.com";
 // endpoints:
 // /users
 // /users/:id
@@ -20,7 +27,31 @@ import {axiosWithAuth} from "../../../common/utils/axiosWithAuth";
 
 // action creators
 
+// test response
+export const testResponse =()=>(dispatch)=>{
+  dispatch({type:API_STATUS_CHANGE,payload:{
+    status:API_START,
+    api:"testResponse"
+  }});
+  axios.get(baseURL)
+  .then((res)=>{
+    dispatch({type:API_STATUS_CHANGE,payload:{
+      status:API_SUCCESS,
+      api:"testResponse"}});
+    // dispatch other actions
+    // dispatch USER_LOGGED_IN payload: res.data
+    // dispatch({type:USER_LOGGED_IN,payload:res.data});
+    // localStorage to store the token
 
+  })
+  .catch((err)=>{
+    dispatch({type:API_STATUS_CHANGE,payload:{
+      status:API_FAILURE,
+      api:"testResponse",
+      errMsg:err,
+    }});
+  });
+}
 
 
 // login
@@ -29,7 +60,7 @@ export const postLogIn = (formValues) => (dispatch) =>{
     status:API_START,
     api:"postLogIn"
   }});
-  axios.post("/users/login",formValues)
+  axios.post(`${baseURL}/api/auth/login`,formValues)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
@@ -37,8 +68,7 @@ export const postLogIn = (formValues) => (dispatch) =>{
     // dispatch other actions
     // dispatch USER_LOGGED_IN payload: res.data
     dispatch({type:USER_LOGGED_IN,payload:res.data});
-    // localStorage to store the token
-
+    localStorage.setItem("authToken",res.data.token) //save the authentication
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -58,7 +88,7 @@ export const createUser = (formValues) => (dispatch) => {
     status:API_START,
     api:"createUser"
   }});
-  axios.post("/users/register",formValues)
+  axios.post(`${baseURL}/api/auth/register`,formValues)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
@@ -77,48 +107,21 @@ export const createUser = (formValues) => (dispatch) => {
   });
 };
 
-
-
-// put user by id
-export const updateUser = (user,id) => (dispatch) => {
-  dispatch({type:API_STATUS_CHANGE,payload:{
-    status:API_START,
-    api:"updateUser"
-  }});
-  axiosWithAuth().put(`/users/${id}`,user)
-  .then((res)=>{
-    dispatch({type:API_STATUS_CHANGE,payload:{
-      status:API_SUCCESS,
-      api:"updateUser"
-    }});
-    // dispatch other actions
-    // dispatch USER_UPDATED
-    dispatch({type:USER_UPDATED,payload:res.data});
-  })
-  .catch((err)=>{
-    dispatch({type:API_STATUS_CHANGE,payload:{
-      status:API_FAILURE,
-      api:"updateUser",
-      errMsg:err
-    }});
-  });
-}; 
-
 // get items
 export const getItems = () => (dispatch) => {
   dispatch({type:API_STATUS_CHANGE,payload:{
     status:API_START,
     api:"getItems"
   }});
-  axiosWithAuth().get(`/items/`)
+  axiosWithAuth(baseURL).get(`api/items`)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"getItems"
     }});
     // dispatch other actions
-    // dispatch ITEMS_RECEIVED
-    dispatch({type:ITEMS_RECEIVED,payload:res.data});
+    dispatch({type:ITEMS_RECEIVED,payload:res.data}); // call the items reducer
+    dispatch({type:USER_ITEMS_RECEIVED,payload:res.data}); //call the user reducer
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -137,7 +140,7 @@ export const createItem = (item) => (dispatch) => {
     status:API_START,
     api:"createItem"
   }});
-  axiosWithAuth().put(`/items/`,item)
+  axiosWithAuth(baseURL).post(`api/items`,item)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
@@ -145,7 +148,7 @@ export const createItem = (item) => (dispatch) => {
     }});
     // dispatch other actions
     // dispatch ITEM_CREATED
-    dispatch({type:ITEM_CREATED, payload:res.data});
+    dispatch(getItems()); //make a get request to stay up to date with the backend
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -165,15 +168,14 @@ export const updateItem = (item,id) => (dispatch) => {
     status:API_START,
     api:"updateItem"
   }});
-  axiosWithAuth().put(`/items/${id}`,item)
+  axiosWithAuth(baseURL).put(`api/items/${id}`,item)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"updateItem"
     }});
     // dispatch other actions
-    // dispatch ITEM_UPDATED
-    dispatch({type:ITEM_UPDATED, payload:res.data})
+    dispatch(getItems()); //make a get request to stay up to date with the backend
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -184,24 +186,19 @@ export const updateItem = (item,id) => (dispatch) => {
   });
 };
 
-
-
-
 // delete item by id
 export const deleteItem = (id) => (dispatch) => {
   dispatch({type:API_STATUS_CHANGE,payload:{
     status:API_START,
     api:"deleteItem"
   }});
-  axiosWithAuth().delete(`/items/${id}`)
+  axiosWithAuth(baseURL).delete(`api/items/${id}`)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"deleteItem"
     }});
-    // dispatch other actions
-    // dispatch ITEM_DELETED
-    dispatch({type:ITEM_DELETED, payload:res.data})
+    dispatch(getItems()); //make a get request to stay up to date with the backend
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -211,10 +208,6 @@ export const deleteItem = (id) => (dispatch) => {
     }});
   });
 };
-
-
-
-
 
 // reducer
 
@@ -236,34 +229,3 @@ export const apiReducer = (state = apiInitialState, action) => {
   }
 };
 
-
-// export const getRecipe = (props) => (dispatch) => {
-//   //console.log("Incoming props.searchValue to actions = ", props);
-//   const options = {
-//     method: "GET",
-//     url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search",
-//     params: { query: props },
-//     headers: {
-//       "x-rapidapi-key": "b461d692bemshe80b4354ca6ba03p184f2ejsn08a3bb994638",
-//       "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//     },
-//   };
-//   //   console.log('options incoming to getRecipe', options)
-//   //   console.log("API call is going");
-//   dispatch({ type: FETCHING_API_START });
-
-//   axios
-//     .request(options)
-//     .then((res) => {
-//       dispatch({ type: FETCHING_API_SUCCESS, payload: res.data.results });
-//       console.log("API call is done", res.data.results);
-//     })
-//     .catch((error) => {
-//       dispatch({ type: FETCHING_API_FAILURE, payload: error });
-//       console.log("This API request failed", error);
-//     });
-// };
-// export const searchValue = (newSearch) => {
-//   //console.log("5. new searchValue is", newSearch);
-//   return { type: SEARCH_VALUE, payload: newSearch };
-// };

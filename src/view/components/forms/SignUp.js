@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {Link, useHistory} from "react-router-dom";
 import * as yup from 'yup'
+import { connect } from "react-redux"
+import { createUser } from "../../../state/actions";
+
 
 const displayErrors=(formErrors)=>{
     return Object.keys(formErrors).map((key, i) => formErrors[key] === '' ? '' : <div key={i}> {formErrors[key]} </div>);
@@ -75,7 +78,7 @@ function SignUp(props) {
     return (
         <div>
             <div>
-                <form
+                <form className={"signup-form"}
                     onSubmit={handleSubmit}
                 >
                     <div>
@@ -134,6 +137,9 @@ function SignUp(props) {
     );
 }
 
+const mapDispatchToProps = {
+  createUser
+}
 
 
-export default SignUp;
+export default connect(null, mapDispatchToProps)(SignUp);
