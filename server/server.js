@@ -129,6 +129,13 @@ function authenticator(req, res, next) {
   }
 }
 
+app.post('/api/auth/register', (req, res) => {
+  const { username, password, email, isOwner } = req.body;
+  res.status(200).json({
+    payload: token
+  });
+});
+
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   if (username === 'lambda@lambda.com' && password === 'school') {
