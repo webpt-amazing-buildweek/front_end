@@ -6,8 +6,8 @@ import PrivateRoute from "./view/PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {createUser} from "./state/actions";
-
-
+import axios from 'axios';
+import { testResponse } from "./state/_shared/middleware/api";
 // const dummyLogIn = {
 //   username:"chris",
 //   password:"123456789"
@@ -24,8 +24,16 @@ function App() {
   // this code is for testing api. remove later----
   const dispatch = useDispatch();
   useEffect(()=>{
-    dispatch(createUser(dummySignUp));
+    dispatch(testResponse());
   },[dispatch])
+  // axios.get("http://localhost:5000")
+  // .then((res)=>{
+  //   console.log("!!!!!!!!!!!!!!!!!!!",res)
+  // })
+  // .catch((err)=>{
+  //   console.log({err});
+  // })
+  // },[])
   // --------
   return (
     <Router>

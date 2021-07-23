@@ -20,7 +20,31 @@ import {axiosWithAuth} from "../../../common/utils/axiosWithAuth";
 
 // action creators
 
+// test response
+export const testResponse =()=>(dispatch)=>{
+  dispatch({type:API_STATUS_CHANGE,payload:{
+    status:API_START,
+    api:"testResponse"
+  }});
+  axios.get("http://localhost:5000")
+  .then((res)=>{
+    dispatch({type:API_STATUS_CHANGE,payload:{
+      status:API_SUCCESS,
+      api:"testResponse"}});
+    // dispatch other actions
+    // dispatch USER_LOGGED_IN payload: res.data
+    // dispatch({type:USER_LOGGED_IN,payload:res.data});
+    // localStorage to store the token
 
+  })
+  .catch((err)=>{
+    dispatch({type:API_STATUS_CHANGE,payload:{
+      status:API_FAILURE,
+      api:"testResponse",
+      errMsg:err,
+    }});
+  });
+}
 
 
 // login
