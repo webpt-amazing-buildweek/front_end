@@ -106,11 +106,8 @@ app.post('/api/auth/login', (req, res) => {
     res.status(200).json({
       token,
       user:{
-        id:0,
         username,
         password,
-        email,
-        isOwner
       }
     });
   } else {
@@ -120,20 +117,10 @@ app.post('/api/auth/login', (req, res) => {
   }
 });
 
-app.get('api/items', authenticator, (req, res) => {
-  setTimeout(() => {
-    res.send(items);
-  }, 1000);
-});
 
-app.get('api/items/:id', authenticator, (req, res) => {
-  const item = items.find(f => f.id == req.params.id);
+app.get('/api/items', authenticator, (req, res) => {
 
-  if (item) {
-    res.status(200).json(item);
-  } else {
-    res.status(404).send({ msg: 'item not found' });
-  }
+  res.send(items);
 });
 
 app.post('/api/items', authenticator, (req, res) => {
@@ -143,6 +130,18 @@ app.post('/api/items', authenticator, (req, res) => {
 
   res.send(items);
 });
+
+
+app.get('/api/items/:id', authenticator, (req, res) => {
+  const item = items.find(f => f.id == req.params.id);
+
+  if (item) {
+    res.status(200).json(item);
+  } else {
+    res.status(404).send({ msg: 'item not found' });
+  }
+});
+
 
 app.put('/api/items/:id', authenticator, (req, res) => {
   const { id } = req.params;
