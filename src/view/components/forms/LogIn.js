@@ -59,6 +59,7 @@ function loginForm() {
     <div>
       <h2>Login</h2>
       <form onSubmit={formSubmit}>
+        <p>
         <label htmlFor="email">
           Email:
           <input
@@ -70,9 +71,10 @@ function loginForm() {
             onChange={inputChange}
           />
           {err.email.length > 0 ? <p>{err.email}</p> : null}
-        </label>
-        Password:
+        </label></p>
+        <p>
         <label htmlFor="password">
+        Password:
           <input
             type="password"
             placeholder="Password"
@@ -82,7 +84,7 @@ function loginForm() {
             onChange={inputChange}
           />
           {err.password.length > 0 ? <p>{err.password}</p> :null}
-        </label>
+        </label></p>
         <button type="submit" disabled={!isValid}>Log In</button>
       </form>
     </div>
