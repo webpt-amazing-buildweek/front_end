@@ -2,30 +2,32 @@
 import {API_IDLE} from "./constants";
 export const apiInitialState = {
       postLogIn:{
+        numberOfSuccessCalls:0,
         status:API_IDLE,
         errMsg:""
       },
       createUser:{
-        status:API_IDLE,
-        errMsg:""
-      },
-      updateUser:{
+        numberOfSuccessCalls:0,
         status:API_IDLE,
         errMsg:""
       },
       getItems:{
+        numberOfSuccessCalls:0,
         status:API_IDLE,
         errMsg:""
       },
       createItem:{
+        numberOfSuccessCalls:0,
         status:API_IDLE,
         errMsg:""
       },
       updateItem:{
+        numberOfSuccessCalls:0,
         status:API_IDLE,
         errMsg:""
       },
       deleteItem:{
+        numberOfSuccessCalls:0,
         status:API_IDLE,
         errMsg:""
       },

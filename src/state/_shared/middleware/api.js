@@ -15,7 +15,8 @@ import {apiInitialState} from '../store/index';
 import axios from 'axios';
 import {axiosWithAuth} from "../../../common/utils/axiosWithAuth";
 
-const baseURL = "https://saudi-market-app.herokuapp.com";
+const baseURL = "http://localhost:5000";
+// const baseURL = "https://saudi-market-app.herokuapp.com";
 // endpoints:
 // /users
 // /users/:id
@@ -217,8 +218,13 @@ export const apiReducer = (state = apiInitialState, action) => {
   switch (action.type) {
     case API_STATUS_CHANGE: {
       const {status,api,errMsg} = action.payload;
+      let calls = state[api].numberOfSuccessCalls;
+      if(status===API_SUCCESS){
+        calls++;
+      }
       return { ...state,
          [api]:{
+           numberOfSuccessCalls:calls,
            status,
            errMsg
          }
