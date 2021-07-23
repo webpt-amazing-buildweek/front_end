@@ -217,8 +217,13 @@ export const apiReducer = (state = apiInitialState, action) => {
   switch (action.type) {
     case API_STATUS_CHANGE: {
       const {status,api,errMsg} = action.payload;
+      let calls = state[api].numberOfSuccessCalls;
+      if(status===API_SUCCESS){
+        calls++;
+      }
       return { ...state,
          [api]:{
+           numberOfSuccessCalls:calls,
            status,
            errMsg
          }
