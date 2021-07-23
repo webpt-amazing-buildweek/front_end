@@ -1,6 +1,11 @@
 // please keep all the action creators and reducers in the same file
 
-import { API_STATUS_CHANGE, ITEMS_RECEIVED, ITEM_CREATED, ITEM_DELETED, ITEM_UPDATED, USER_CREATED, USER_ITEMS_RECEIVED, USER_LOGGED_IN, } from '../../actionTypes';
+import { API_STATUS_CHANGE,
+  ITEMS_RECEIVED, 
+  USER_CREATED, 
+  USER_ITEMS_RECEIVED, 
+  USER_LOGGED_IN, 
+} from '../../actionTypes';
 import {
   API_START,
   API_SUCCESS,
@@ -63,8 +68,7 @@ export const postLogIn = (formValues) => (dispatch) =>{
     // dispatch other actions
     // dispatch USER_LOGGED_IN payload: res.data
     dispatch({type:USER_LOGGED_IN,payload:res.data});
-    // localStorage to store the token
-
+    localStorage.setItem("authToken",res.data.token) //save the authentication
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -103,33 +107,6 @@ export const createUser = (formValues) => (dispatch) => {
   });
 };
 
-
-
-// put user by id
-// export const updateUser = (user,id) => (dispatch) => {
-//   dispatch({type:API_STATUS_CHANGE,payload:{
-//     status:API_START,
-//     api:"updateUser"
-//   }});
-//   axiosWithAuth().put(`/users/${id}`,user)
-//   .then((res)=>{
-//     dispatch({type:API_STATUS_CHANGE,payload:{
-//       status:API_SUCCESS,
-//       api:"updateUser"
-//     }});
-//     // dispatch other actions
-//     // dispatch USER_UPDATED
-//     dispatch({type:USER_UPDATED,payload:res.data});
-//   })
-//   .catch((err)=>{
-//     dispatch({type:API_STATUS_CHANGE,payload:{
-//       status:API_FAILURE,
-//       api:"updateUser",
-//       errMsg:err
-//     }});
-//   });
-// }; 
-
 // get items
 export const getItems = () => (dispatch) => {
   dispatch({type:API_STATUS_CHANGE,payload:{
@@ -163,7 +140,7 @@ export const createItem = (item) => (dispatch) => {
     status:API_START,
     api:"createItem"
   }});
-  axiosWithAuth(baseURL).put(`api/items`,item)
+  axiosWithAuth(baseURL).post(`api/items`,item)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
@@ -171,7 +148,7 @@ export const createItem = (item) => (dispatch) => {
     }});
     // dispatch other actions
     // dispatch ITEM_CREATED
-    dispatch({type:ITEM_CREATED, payload:res.data});
+    dispatch(getItems()); //make a get request to stay up to date with the backend
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -198,8 +175,7 @@ export const updateItem = (item,id) => (dispatch) => {
       api:"updateItem"
     }});
     // dispatch other actions
-    // dispatch ITEM_UPDATED
-    dispatch({type:ITEM_UPDATED, payload:res.data})
+    dispatch(getItems()); //make a get request to stay up to date with the backend
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -209,9 +185,6 @@ export const updateItem = (item,id) => (dispatch) => {
     }});
   });
 };
-
-
-
 
 // delete item by id
 export const deleteItem = (id) => (dispatch) => {
@@ -225,9 +198,7 @@ export const deleteItem = (id) => (dispatch) => {
       status:API_SUCCESS,
       api:"deleteItem"
     }});
-    // dispatch other actions
-    // dispatch ITEM_DELETED
-    dispatch({type:ITEM_DELETED, payload:res.data})
+    dispatch(getItems()); //make a get request to stay up to date with the backend
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -237,10 +208,6 @@ export const deleteItem = (id) => (dispatch) => {
     }});
   });
 };
-
-
-
-
 
 // reducer
 

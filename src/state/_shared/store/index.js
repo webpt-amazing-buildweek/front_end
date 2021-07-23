@@ -36,12 +36,9 @@ export const userInitialState = {
   id: -1,
   username:"",
   email:"",
-  items: [], //ids of the items go here
+  items: [], //item objects
   isOwner: false
 
-}
+};
 
-export const itemsInitialState = {
-// key: item id
-// value: items
-}
+export const itemsInitialState = [];

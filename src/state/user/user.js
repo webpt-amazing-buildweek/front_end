@@ -1,5 +1,10 @@
 import {userInitialState} from '../_shared/store/index';
-import { USER_LOGGED_IN, USER_CREATED, USER_LOGGED_OUT,USER_ITEMS_RECEIVED } from '../actionTypes';
+import { 
+  USER_LOGGED_IN,
+  USER_CREATED,
+  USER_LOGGED_OUT,
+  USER_ITEMS_RECEIVED,
+} from '../actionTypes';
 
 
 //Actions
@@ -41,6 +46,7 @@ export const userReducer = (state = userInitialState, action) => {
         isOwner
       };
     }
+
     case USER_ITEMS_RECEIVED:{
       const items = action.payload.filter(item=>item.user_id===state.id);
       return {
@@ -48,16 +54,6 @@ export const userReducer = (state = userInitialState, action) => {
         items:items
       }
     }
-    // case USER_UPDATED: {
-    //   // backend may return a user object
-    //   const {id, items, isOwner} = action.payload;
-    //   return {
-    //     ...state,
-    //     id,
-    //     items,
-    //     isOwner
-    //   };
-    // }
     default:
       return state;
   }
