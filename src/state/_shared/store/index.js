@@ -34,6 +34,8 @@ export const apiInitialState = {
 
 export const userInitialState = {
   id: -1,
+  username:"",
+  email:"",
   items: [], //ids of the items go here
   isOwner: false
 

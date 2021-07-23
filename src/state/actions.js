@@ -6,7 +6,7 @@
 import {
     postLogIn as _postLogIn,
     createUser as _createUser,
-    updateUser as _updateUser,
+    // updateUser as _updateUser,
     getItems as _getItems,
     createItem as _createItem,
     updateItem as _updateItem,
@@ -35,16 +35,16 @@ export const createUser = _createUser;
 //   }
 // actions: API_STATUS_CHANGE, USER_CREATED
 // state changed: api, user
-export const updateUser = _updateUser;
-// args:
-// user {
-//     name: string;
-//     email: string;
-//     password: string;
-//     isOwner: boolean;
-//   }
-// actions: API_STATUS_CHANGE, USER_UPDATED
-// state changed: api, user
+// export const updateUser = _updateUser;
+// // args:
+// // user {
+// //     name: string;
+// //     email: string;
+// //     password: string;
+// //     isOwner: boolean;
+// //   }
+// // actions: API_STATUS_CHANGE, USER_UPDATED
+// // state changed: api, user
 export const getItems = _getItems;
 // args:
 // actions: API_STATUS_CHANGE,ITEMS_RECEIVED
