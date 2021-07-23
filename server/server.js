@@ -10,6 +10,15 @@ let nextId = 7;
 
 let items = [
   {
+    id:0,
+    item_name:"something 0",
+    location:"somewhere 0",
+    quantity:0,
+    price:0,
+    description:"some text 0",
+    user_id:0
+  },
+  {
     id:1,
     item_name:"something 1",
     location:"somewhere 1",
@@ -106,8 +115,11 @@ app.post('/api/auth/login', (req, res) => {
     res.status(200).json({
       token,
       user:{
+        id:0,
         username,
         password,
+        email:"cool@gmail.com",
+        isOwner:true
       }
     });
   } else {
