@@ -15,8 +15,7 @@ import {apiInitialState} from '../store/index';
 import axios from 'axios';
 import {axiosWithAuth} from "../../../common/utils/axiosWithAuth";
 
-const baseURL = "http://localhost:5000";
-// const baseURL = "https://saudi-market-app.herokuapp.com";
+const baseURL = "https://saudi-market-app.herokuapp.com";
 // endpoints:
 // /users
 // /users/:id
