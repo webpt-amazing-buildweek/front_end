@@ -229,34 +229,3 @@ export const apiReducer = (state = apiInitialState, action) => {
   }
 };
 
-
-// export const getRecipe = (props) => (dispatch) => {
-//   //console.log("Incoming props.searchValue to actions = ", props);
-//   const options = {
-//     method: "GET",
-//     url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search",
-//     params: { query: props },
-//     headers: {
-//       "x-rapidapi-key": "b461d692bemshe80b4354ca6ba03p184f2ejsn08a3bb994638",
-//       "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//     },
-//   };
-//   //   console.log('options incoming to getRecipe', options)
-//   //   console.log("API call is going");
-//   dispatch({ type: FETCHING_API_START });
-
-//   axios
-//     .request(options)
-//     .then((res) => {
-//       dispatch({ type: FETCHING_API_SUCCESS, payload: res.data.results });
-//       console.log("API call is done", res.data.results);
-//     })
-//     .catch((error) => {
-//       dispatch({ type: FETCHING_API_FAILURE, payload: error });
-//       console.log("This API request failed", error);
-//     });
-// };
-// export const searchValue = (newSearch) => {
-//   //console.log("5. new searchValue is", newSearch);
-//   return { type: SEARCH_VALUE, payload: newSearch };
-// };
