@@ -130,12 +130,12 @@ app.post('/api/auth/login', (req, res) => {
 });
 
 
-app.get('/api/items', authenticator, (req, res) => {
+app.get('/api/items', (req, res) => {
 
   res.send(items);
 });
 
-app.post('/api/items', authenticator, (req, res) => {
+app.post('/api/items', (req, res) => {
   const item = { id: getNextId(), ...req.body };
 
   items = [...items, item];
@@ -144,7 +144,7 @@ app.post('/api/items', authenticator, (req, res) => {
 });
 
 
-app.get('/api/items/:id', authenticator, (req, res) => {
+app.get('/api/items/:id', (req, res) => {
   const item = items.find(f => f.id == req.params.id);
 
   if (item) {
@@ -155,7 +155,7 @@ app.get('/api/items/:id', authenticator, (req, res) => {
 });
 
 
-app.put('/api/items/:id', authenticator, (req, res) => {
+app.put('/api/items/:id', (req, res) => {
   const { id } = req.params;
 
   const itemIndex = items.findIndex(f => f.id == id);
@@ -174,7 +174,7 @@ app.put('/api/items/:id', authenticator, (req, res) => {
   }
 });
 
-app.delete('/api/items/:id', authenticator, (req, res) => {
+app.delete('/api/items/:id', (req, res) => {
   const { id } = req.params;
 
   items = items.filter(f => f.id !== Number(id));
