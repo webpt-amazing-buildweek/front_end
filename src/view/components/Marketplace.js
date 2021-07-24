@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import ItemCards from "./items/ItemCards";
 import { connect } from "react-redux";
-import { getItems } from "../../state/actions";
+import { getItems,addToCart, removeFromCart } from "../../state/actions";
 import { API_START } from "../../state/_shared/store/constants";
 
 import { Button } from "@material-ui/core";
@@ -36,7 +36,6 @@ const Marketplace=(props)=>{
 
     return (
         <>
-            <div>this is the marketplace</div>
             <ItemCards isLoading={apiStatus===API_START} items={items} renderButtons={renderButtons}/>
         </>
     );
@@ -51,8 +50,8 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
         getItems:()=>dispatch(getItems()), 
-        addToCart:(id)=>{}, //needs implementation in redux
-        removeFromCart:(id)=>{} //needs implementation in redux
+        addToCart:(id)=>dispatch(addToCart(id)), //needs implementation in redux
+        removeFromCart:(id)=>dispatch(removeFromCart(id)) //needs implementation in redux
     }
 };
 

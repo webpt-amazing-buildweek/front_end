@@ -38,7 +38,8 @@ export const userInitialState = {
   id: -1,
   username:"",
   email:"",
-  items: [], //item objects
+  items: [], //item objects,
+  cart:[],
   isOwner: false
 
 };

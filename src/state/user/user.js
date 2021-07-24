@@ -4,6 +4,8 @@ import {
   USER_CREATED,
   USER_LOGGED_OUT,
   USER_ITEMS_RECEIVED,
+  USER_CART_ITEM_ADDED,
+  USER_CART_ITEM_REMOVED,
 } from '../actionTypes';
 
 
@@ -14,7 +16,13 @@ export const logout=()=>{
   // remove token from localStorage
   return {type:USER_LOGGED_OUT}
 };
+export const addToCart=(id)=>{
+  return {type:USER_CART_ITEM_ADDED,payload:id};
+};
 
+export const removeFromCart=(id)=>{
+  return {type:USER_CART_ITEM_REMOVED,payload:id};
+};
 
 //Reducer
 export const userReducer = (state = userInitialState, action) => {
@@ -46,12 +54,25 @@ export const userReducer = (state = userInitialState, action) => {
         isOwner
       };
     }
-
     case USER_ITEMS_RECEIVED:{
       const items = action.payload.filter(item=>item.user_id===state.id);
       return {
         ...state,
         items:items
+      }
+    }
+    case USER_CART_ITEM_ADDED:{
+      const itemId = action.payload;
+      return {
+        ...state,
+        cart:[...state.cart,itemId]
+      }
+    }
+    case USER_CART_ITEM_REMOVED:{
+      const itemId = action.payload;
+      return {
+        ...state,
+        cart:state.cart.filter((id)=>id!==itemId)
       }
     }
     default:
