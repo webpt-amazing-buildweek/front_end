@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { connect } from "react-redux";
-import { postLogin } from "../../../state/actions"
+import { postLogIn } from "../../../state/actions"
 // import "tailwindcss/dist/tailwind.css";
 // import { AppNav, AppHome, AppAbout, AppRecipes, AppChef, AppNutrition, AppCocktail } from "./view/components/index";
 
@@ -101,7 +101,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  postLogin
+  postLogIn
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
