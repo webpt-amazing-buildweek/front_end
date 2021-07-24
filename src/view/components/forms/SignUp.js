@@ -34,11 +34,10 @@ const validateForm=(schema,formValues,setIsValid)=>{
 };
 
 const initialValues = {
-    name: "",
+    username: "",
     email: "",
     password: "",
-    isOwner: false,
-    is_instructor: false,
+    isOwner: false
 };
 
 const initialErrorValues = Object.keys(initialValues).reduce((acc, key) => {
@@ -88,8 +87,8 @@ function SignUp(props) {
                             <input
                                 id="sign-up-form-name"
                                 type="text"
-                                name="name"
-                                value={formValues.name}
+                                name="username"
+                                value={formValues.username}
                                 onChange={handleChange}
                             />
                         </label>
@@ -138,6 +137,7 @@ function SignUp(props) {
 }
 
 const mapStateToProps = (state) => {
+  // console.log("!!!!!!!", state.api.createUser)
   return {
     api: state.api.createUser
   }
