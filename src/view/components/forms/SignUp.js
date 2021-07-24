@@ -71,7 +71,7 @@ function SignUp(props) {
 
     const handleSubmit = (event) => {
         handleSubmitHelper(event);
-        props.addNewUser(formValues);
+        props.createUser(formValues);
         history.push("/login");
     };
 
@@ -125,7 +125,7 @@ function SignUp(props) {
                             onChange={handleChange}
                         />
                         
-                        <button type="submit" disabled={!isValid}>
+                        <button type="submit" disabled={false}>
                             Sign Up
                         </button>
                         {displayErrors(formErrors)}{" "}
@@ -137,9 +137,16 @@ function SignUp(props) {
     );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    api: state.api.createUser
+  }
+}
+
+
 const mapDispatchToProps = {
   createUser
 }
 
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
