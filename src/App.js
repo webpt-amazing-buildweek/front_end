@@ -1,7 +1,7 @@
 import "./App.css";
 import "tailwindcss/dist/tailwind.css";
 import React from "react";
-import { Nav, Home, User, SignUp } from "./view/components/index";
+import { Nav, Home, User, SignUp, LogIn } from "./view/components/index";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       </div>
       <Switch>
         <Route exact path={"/"} component={Home} />
-        {/* <Route exact path={"/login"} component={} /> */}
+        <Route exact path={"/login"} component={LogIn} />
         <Route exact path={"/signup"} component={SignUp} />
         <Route exact path={"/user"} component={User} />
         {/* <Route exact path={"/user/owner"} component={} />  */}
