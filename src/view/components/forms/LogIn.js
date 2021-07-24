@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
+import { connect } from "react-redux";
+import { postLogin } from "../../../state/actions"
 // import "tailwindcss/dist/tailwind.css";
 // import { AppNav, AppHome, AppAbout, AppRecipes, AppChef, AppNutrition, AppCocktail } from "./view/components/index";
 
@@ -9,7 +11,7 @@ const Schema = yup.object().shape({
   password: yup.string().required("Not a valid Password")
 });
 
-function loginForm() {
+function LoginForm(props) {
   const [loginState, setloginState] = useState([
     {
       email: "",
@@ -28,7 +30,7 @@ function loginForm() {
 
   const formSubmit = (e) => {
     e.preventDefault();
-
+    props.createUser(loginState)
     history.push("/user")
   };
 
@@ -91,4 +93,15 @@ function loginForm() {
   );
 }
 
-export default loginForm;
+const mapStateToProps = (state) => {
+  return {
+    numberOfSuccessCalls: state.api.postLogIn,
+    status: state.api.postLogIn.status
+  }
+}
+
+const mapDispatchToProps = {
+  postLogin
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
