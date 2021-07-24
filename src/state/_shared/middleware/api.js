@@ -15,7 +15,7 @@ import {apiInitialState} from '../store/index';
 import axios from 'axios';
 import {axiosWithAuth} from "../../../common/utils/axiosWithAuth";
 
-const baseURL = "https://saudi-market-app.herokuapp.com";
+const baseURL = "https://sauti-market-bw.herokuapp.com";
 // endpoints:
 // /users
 // /users/:id
@@ -88,6 +88,7 @@ export const createUser = (formValues) => (dispatch) => {
     status:API_START,
     api:"createUser"
   }});
+  console.log(formValues)
   axios.post(`${baseURL}/api/auth/register`,formValues)
   .then((res)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
