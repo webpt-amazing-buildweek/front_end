@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -7,11 +6,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import { Button } from "@material-ui/core";
+
 import { LinearProgress } from "@material-ui/core";
-import ShareIcon from '@material-ui/icons/Share';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import { getItems } from "../../../state/_shared/middleware/api";
+
 
 
 const baseUri = "https://spoonacular.com/recipeImages/";
@@ -40,34 +37,33 @@ const useStyles = makeStyles({
   }
 });
 
-const Recipe = (props) => {
-  const [like, setLike] = React.useState(false);
-  const { recipe, loading } = props;
+const ItemCards = (props) => {
+  const { items, isLoading, renderButtons } = props;
   const classes = useStyles();
 
-  //this helper function will convert mins to hours and mins
-  const convertMinToHoursAndMin = (min) => {
-    let hours = Math.floor(min / 60);
-    let mins = min - hours * 60;
-    if (hours === 0) {
-      return mins + " mins";
-    } else {
-      return `${hours} hours ${mins} mins`;
-    }
-  };
+  // //this helper function will convert mins to hours and mins
+  // const convertMinToHoursAndMin = (min) => {
+  //   let hours = Math.floor(min / 60);
+  //   let mins = min - hours * 60;
+  //   if (hours === 0) {
+  //     return mins + " mins";
+  //   } else {
+  //     return `${hours} hours ${mins} mins`;
+  //   }
+  // };
 
-  //this helper function will handle like button boolean values
-  const handleLikeButton = () => {
-    if (like) {
-      console.log(like)
-      setLike(false);
-    } else {
-      console.log(like)
-     setLike(true)
-    }
-  };
+  // //this helper function will handle like button boolean values
+  // const handleLikeButton = () => {
+  //   if (like) {
+  //     console.log(like)
+  //     setLike(false);
+  //   } else {
+  //     console.log(like)
+  //    setLike(true)
+  //   }
+  // };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div
         className={
@@ -88,19 +84,20 @@ const Recipe = (props) => {
             "flex flex-row flex-wrap justify-center w-screen h-auto p-32 -my-72 bg-white shadow-inner "
           }
         >
-          {recipe &&
-            recipe.map((recipe, idx) => {
+          {items &&
+            items.map((item) => {
+              const {id} = item;
               return (
-                <Card key={idx} className={classes.root}>
+                <Card key={id} className={classes.root}>
                   <CardActionArea className={classes.action}>
                     <CardMedia
                       className={classes.media}
-                      image={`${baseUri}${recipe.image}`}
-                      title={recipe.title}
+                      image={`${baseUri}${item.image}`}
+                      title={item.title}
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">
-                        {recipe.title}
+                        {item.title}
                       </Typography>
                       <CardContent
                         className={"flex flex-row flex-wrap justify-between"}
@@ -110,38 +107,13 @@ const Recipe = (props) => {
                           color="primary"
                           component="p"
                         >
-                          Servings: {recipe.servings}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          color="primary"
-                          component="p"
-                        >
-                          {convertMinToHoursAndMin(recipe.readyInMinutes)}
+                          Servings: {item.servings}
                         </Typography>
                       </CardContent>
                     </CardContent>
                   </CardActionArea>
                   <CardActions className={'flex justify-center'}>
-                    <Button
-                      className="btn btn-primary btn-block text-"
-                    
-                    >
-                      <a href={recipe.sourceURL}>View Recipe</a>
-                    </Button>
-
-                    <Button size="small" color="primary" onClick={handleLikeButton}>
-                      Like
-                      {
-                        like === false ? <ThumbUpIcon color={'disabled'} className="-my-24 ml-2" /> : 
-                        <ThumbUpIcon color={'primary'} className="-my-24 ml-2" />
-                      }
-                      
-                    </Button>
-                    <Button size="small" color="primary">
-                      Share
-                      <ShareIcon className={'ml-2'}/>
-                    </Button>
+                    {renderButtons(id)}
                   </CardActions>
                 </Card>
               );
@@ -151,15 +123,6 @@ const Recipe = (props) => {
     );
   }
 };
-//State key should be items here?
-const mapStateToProps = (state) => {
-  return {
-    loading: state.loading,
-    error: state.error,
-    recipe: state.recipe,
-  };
-};
 
-const mapDispatchToProps =  { getItems } ;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
+export default ItemCards;
