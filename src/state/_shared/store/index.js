@@ -45,3 +45,14 @@ export const userInitialState = {
 };
 
 export const itemsInitialState = [];
+
+// Item Object
+// {
+//    id: integer
+//    item_name: string
+//    location: string
+//    quantity: integer
+//    price: float
+//    description: string
+//    user_id: integer
+// }

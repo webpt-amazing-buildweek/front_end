@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -6,10 +6,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-
-import { LinearProgress } from "@material-ui/core";
-
-
+import placeholder from "../../../assets/placeholder.png";
+import { LinearProgress,Button } from "@material-ui/core";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 const baseUri = "https://spoonacular.com/recipeImages/";
 
@@ -39,29 +39,10 @@ const useStyles = makeStyles({
 
 const ItemCards = (props) => {
   const { items, isLoading, renderButtons } = props;
+
+  const [expandItem, setExpandItem] = useState(-1);
   const classes = useStyles();
 
-  // //this helper function will convert mins to hours and mins
-  // const convertMinToHoursAndMin = (min) => {
-  //   let hours = Math.floor(min / 60);
-  //   let mins = min - hours * 60;
-  //   if (hours === 0) {
-  //     return mins + " mins";
-  //   } else {
-  //     return `${hours} hours ${mins} mins`;
-  //   }
-  // };
-
-  // //this helper function will handle like button boolean values
-  // const handleLikeButton = () => {
-  //   if (like) {
-  //     console.log(like)
-  //     setLike(false);
-  //   } else {
-  //     console.log(like)
-  //    setLike(true)
-  //   }
-  // };
 
   if (isLoading) {
     return (
@@ -92,23 +73,50 @@ const ItemCards = (props) => {
                   <CardActionArea className={classes.action}>
                     <CardMedia
                       className={classes.media}
-                      image={`${baseUri}${item.image}`}
-                      title={item.title}
+                      image={placeholder}
+                      title={item.item_name}
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">
-                        {item.title}
+                        {item.item_name}
                       </Typography>
-                      <CardContent
-                        className={"flex flex-row flex-wrap justify-between"}
-                      >
+                      <CardContent className={"flex flex-row flex-wrap justify-between"}>
                         <Typography
                           variant="body2"
                           color="primary"
                           component="p"
                         >
-                          Servings: {item.servings}
+                          Location: {item.location}
                         </Typography>
+                        <Typography
+                          variant="body2"
+                          color="primary"
+                          component="p"
+                        >
+                          Quantity: {item.quantity}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="primary"
+                          component="p"
+                        >
+                          ${item.price}
+                        </Typography>
+                        <Button size="small" color="primary" onClick={()=>expandItem===id?setExpandItem(-1):setExpandItem(id)}>
+                          {expandItem===id? <ExpandLessIcon/>:<ExpandMoreIcon />}
+                        </Button>
+                        {
+                          expandItem===id?
+                          <Typography
+                          variant="body2"
+                          color="primary"
+                          component="p"
+                          >
+                          Description: {item.description}
+                          </Typography>
+                          :
+                          ""
+                        }
                       </CardContent>
                     </CardContent>
                   </CardActionArea>
