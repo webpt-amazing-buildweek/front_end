@@ -52,7 +52,7 @@ const ItemCards = (props) => {
         }
       >
         <h5 className={'text-black'}>
-          Your delicious results are on their way...
+          Fetching Items...
         </h5>
         <LinearProgress  />
       </div>
