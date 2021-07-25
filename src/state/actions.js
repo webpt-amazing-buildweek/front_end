@@ -13,7 +13,11 @@ import {
     deleteItem as _deleteItem
 } from "./_shared/middleware/api";
 
-import { logout as _logout } from "./user/user";
+import { 
+    logout as _logout,
+    addToCart as _addToCart,
+    removeFromCart as _removeFromCart
+ } from "./user/user";
 
 
 // api user action creators
@@ -83,4 +87,16 @@ export const deleteItem = _deleteItem;
 export const logout = _logout;
 // args:
 // actions:USER_LOGGED_OUT, 
+// state changed:user
+
+
+export const addToCart = _addToCart;
+// args:
+// id: number;
+// actions:USER_CART_ITEM_ADDED, 
+// state changed:user
+export const removeFromCart = _removeFromCart;
+// args:
+// id: number;
+// actions:USER_CART_ITEM_REMOVED, 
 // state changed:user
