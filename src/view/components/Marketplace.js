@@ -50,8 +50,8 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
         getItems:()=>dispatch(getItems()), 
-        addToCart:(id)=>dispatch(addToCart(id)), //needs implementation in redux
-        removeFromCart:(id)=>dispatch(removeFromCart(id)) //needs implementation in redux
+        addToCart:(id)=>dispatch(addToCart(id)), 
+        removeFromCart:(id)=>dispatch(removeFromCart(id)) 
     }
 };
 
