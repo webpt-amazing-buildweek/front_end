@@ -5,7 +5,6 @@ import { LinearProgress } from "@material-ui/core";
 
 import ItemCard from "./ItemCard";
 
-const baseUri = "https://spoonacular.com/recipeImages/";
 
 const useStyles = makeStyles({
   root: {
@@ -36,7 +35,6 @@ const ItemCards = (props) => {
 
   const [expandItem, setExpandItem] = useState(-1);
   const classes = useStyles();
-
 
   if (isLoading) {
     return (
