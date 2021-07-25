@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
+import { connect } from "react-redux";
+import { postLogIn } from "../../../state/actions"
 // import "tailwindcss/dist/tailwind.css";
 // import { AppNav, AppHome, AppAbout, AppRecipes, AppChef, AppNutrition, AppCocktail } from "./view/components/index";
 
 const Schema = yup.object().shape({
-  email: yup.string().required("Email is Required"),
+  username: yup.string().required("Email is Required"),
   password: yup.string().required("Not a valid Password")
 });
 
-function loginForm() {
+function LoginForm(props) {
   const [loginState, setloginState] = useState([
     {
-      email: "",
+      username: "",
       password: ""
     }
   ]);
 
   const [err, setErr] = useState({
-    email: "",
+    username: "",
     password: ""
   });
 
@@ -28,7 +30,7 @@ function loginForm() {
 
   const formSubmit = (e) => {
     e.preventDefault();
-
+    props.postLogIn(loginState)
     history.push("/user")
   };
 
@@ -60,17 +62,17 @@ function loginForm() {
       <h2>Login</h2>
       <form onSubmit={formSubmit}>
         <p>
-        <label htmlFor="email">
-          Email:
+        <label htmlFor="username">
+          Username:
           <input
-            type="email"
-            placeholder="Email"
-            id="email"
-            name="email"
-            value={loginState.email}
+            type="username"
+            placeholder="username"
+            id="username"
+            name="username"
+            value={loginState.username}
             onChange={inputChange}
           />
-          {err.email.length > 0 ? <p>{err.email}</p> : null}
+          {err.username.length > 0 ? <p>{err.username}</p> : null}
         </label></p>
         <p>
         <label htmlFor="password">
@@ -91,4 +93,15 @@ function loginForm() {
   );
 }
 
-export default loginForm;
+const mapStateToProps = (state) => {
+  return {
+    numberOfSuccessCalls: state.api.postLogIn,
+    status: state.api.postLogIn.status
+  }
+}
+
+const mapDispatchToProps = {
+  postLogIn
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
