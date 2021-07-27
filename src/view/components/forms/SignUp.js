@@ -75,13 +75,15 @@ function SignUp(props) {
     };
 
     return (
-        <div>
-            <div>
+        <div className={"flex flex-col text-center"}>
+            <div className={"parallax-wrapper2 self-center text-white mt-96"}
+            style={{background: '#e06706'}}
+            >
                 <form className={"signup-form"}
                     onSubmit={handleSubmit}
                 >
-                    <div>
-                        <h2>Sign Up</h2>
+                    <div className={'flex flex-col  text-center'}>
+                        <h2 style={{fontSize: '4rem', color: '#3c1c07', textShadow: '0 0 1rem black'}}>Sign Up</h2>
                         <label>
                             Name:{" "}
                             <input
@@ -90,6 +92,7 @@ function SignUp(props) {
                                 name="username"
                                 value={formValues.username}
                                 onChange={handleChange}
+                                className={'input'}
                             />
                         </label>
                         <label>
@@ -100,6 +103,7 @@ function SignUp(props) {
                                 name="email"
                                 value={formValues.email}
                                 onChange={handleChange}
+                                className={'input'}
                             />
                         </label>
                         <label>
@@ -110,7 +114,7 @@ function SignUp(props) {
                                 name="password"
                                 value={formValues.password}
                                 onChange={handleChange}
-
+                                className={'input'}
                             />
                         </label>
 
@@ -122,6 +126,7 @@ function SignUp(props) {
                             name="isOwner"
                             checked={formValues.isOwner}
                             onChange={handleChange}
+                            className={'input'}
                         />
                         
                         <button type="submit" disabled={!isValid}>
