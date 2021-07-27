@@ -69,6 +69,7 @@ export const postLogIn = (formValues) => (dispatch) =>{
     // dispatch USER_LOGGED_IN payload: res.data
     dispatch({type:USER_LOGGED_IN,payload:res.data});
     localStorage.setItem("authToken",res.data.token) //save the authentication
+    localStorage.setItem('userObject', JSON.stringify(res.data))// save the user object in local storage
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{

@@ -24,13 +24,20 @@ export const removeFromCart=(id)=>{
   return {type:USER_CART_ITEM_REMOVED,payload:id};
 };
 
+// retain user state action
+// export const checkUserAuth =() => {
+//   const token = localStorage.getItem("user")
+//   return {type: USER_AUTH_CHECKED}
+// }
+
 //Reducer
 export const userReducer = (state = userInitialState, action) => {
   //3. initialize switch statement
   switch (action.type) {
     case USER_LOGGED_IN: {
       // backend may return a user object
-      const {id, email, username, isOwner} = action.payload.user;
+      const {id, email, username, isOwner} = action.payload;
+      console.log("------->>>>>>", id)
       return {
         ...state,
         id,

@@ -10,13 +10,13 @@ import {
     getItems as _getItems,
     createItem as _createItem,
     updateItem as _updateItem,
-    deleteItem as _deleteItem
+    deleteItem as _deleteItem,
 } from "./_shared/middleware/api";
 
 import { 
     logout as _logout,
     addToCart as _addToCart,
-    removeFromCart as _removeFromCart
+    removeFromCart as _removeFromCart,
  } from "./user/user";
 
 
@@ -100,3 +100,8 @@ export const removeFromCart = _removeFromCart;
 // id: number;
 // actions:USER_CART_ITEM_REMOVED, 
 // state changed:user
+// export const checkUserAuth = _checkUserAuth;
+// args:
+// id: number;
+// actions: USER_AUTH_CHECKED,
+// state changed: user

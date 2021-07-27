@@ -31,7 +31,7 @@ function LoginForm(props) {
   const formSubmit = (e) => {
     e.preventDefault();
     props.postLogIn(loginState)
-    history.push("/user")
+    history.push("/marketplace")
   };
 
   const validate = (e) => {
