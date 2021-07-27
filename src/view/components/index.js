@@ -6,7 +6,10 @@ import About from "./About";
 import Recipes from "./Recipes";
 import Cocktail from "./Cocktail";
 import Nutrition from "./Nutrition";
+import ItemsList from "./ItemsList";
 import RecipeCards from "./RecipeCards";
+
+
 
 export {
   Nav as AppNav,
@@ -16,5 +19,6 @@ export {
   Recipes as AppRecipes,
   Cocktail as AppCocktail,
   Nutrition as AppNutrition,
-  RecipeCards as AppRecipeCards
+  RecipeCards as AppRecipeCards,
+  ItemsList as ItemsList
 };
