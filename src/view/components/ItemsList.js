@@ -55,9 +55,16 @@ function ItemsList() {
     history.push("/user")
   }
 
-  useEffect(() => {
-    schema.isValid(form).then((valid) => setDisabled(!valid));
-  }, [form])
+  
+
+const validateForm = (schema, form, setDisabled) => {
+    console.log("this is validate form disabled value", disabled)
+    schema.isValid(form).then((valid) => setDisabled(!valid))
+}
+
+useEffect(() => {
+    validateForm(schema, form, setDisabled)
+}, [form])
 
   return (
     <div>
