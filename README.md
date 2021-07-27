@@ -45,10 +45,10 @@
 
     - when you are ready to push your working branch to the remote repo run `git push origin working-on-feature-name` or use the UI of VSCode to do this with Commit and Push
 
-    - When ready to merge the feature branch into the main branch run `git checkout main` and `git merge working-on-feature-name` 
+    - When ready to merge the feature branch into the develop branch run `git checkout develop` and `git merge working-on-feature-name` 
       or use the UI of Github to do this with Merge and Commit
 
-    - Do a pull on the main branch to update the main branch with your changes
+    - Do a pull request on the develop branch to update the develop branch with your changes
 
     - Be sure to clean up merge conflicts
 
@@ -69,3 +69,41 @@
 ### When hitting the localhost:5000/api/artists endpoint without a token expect
 
     'error': "User must be logged in to do that" code 403
+
+### Endpoints from backend
+
+/owners
+/owners/:id
+/users
+/users/:id
+/items
+/items/:id
+
+/login
+/signup
+
+### Backend objects
+user = {
+   id:0,
+   items = [] //integers,
+   username,
+   email,
+   password, //not returned from backend
+   isOwner
+}
+
+order = {
+   id:0, //transaction id
+   date,
+   item = [],//array of item ids
+   totalPrice = 10
+}//stretch feature
+
+
+item = {
+   id:0,
+   name,
+   description,
+   location,
+   price,
+}
