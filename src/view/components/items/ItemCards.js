@@ -59,8 +59,8 @@ const ItemCards = (props) => {
             }
           >
             {
-              items.map(item=>
-              <ItemCard item={item} classes={classes} expandItem={expandItem} setExpandItem={setExpandItem} renderButtons={renderButtons}/>)
+              items.map((item,index)=>
+              <ItemCard key={index} item={item} classes={classes} expandItem={expandItem} setExpandItem={setExpandItem} renderButtons={renderButtons}/>)
             }
           </div>
         </div>

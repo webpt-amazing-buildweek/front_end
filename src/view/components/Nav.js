@@ -113,7 +113,7 @@ function Nav(props) {
           <ListItemIcon>
             <LibraryBooksIcon />
           </ListItemIcon>
-            <Link to={""} onClick={handleDrawerClose}>
+            <Link to={"/"} onClick={() => {handleDrawerClose(); logout();}}>
               <ListItemText primary="Logout" />
             </Link>
         </ListItem>

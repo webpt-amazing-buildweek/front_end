@@ -6,7 +6,7 @@ import _Item from "./items/Item";
 import _LogIn from "./forms/LogIn";
 import _SignUp from "./forms/SignUp";
 // import _Owner from "./Owner";
-import _User from "./User"
+import _Marketplace from "./Marketplace"
 
 
 export {
@@ -17,5 +17,5 @@ export {
   _LogIn as LogIn,
   _SignUp as SignUp,
   // _Owner as Owner,
-  _User as User
+  _Marketplace as Marketplace
 };
