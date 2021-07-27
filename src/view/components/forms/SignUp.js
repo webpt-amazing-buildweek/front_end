@@ -124,7 +124,7 @@ function SignUp(props) {
                             onChange={handleChange}
                         />
                         
-                        <button type="submit" disabled={false}>
+                        <button type="submit" disabled={!isValid}>
                             Sign Up
                         </button>
                         {displayErrors(formErrors)}{" "}
