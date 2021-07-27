@@ -26,7 +26,7 @@ const Marketplace=(props)=>{
     const renderButtons=(id)=>{
         return(
         <>
-            <Button size="small" color="primary" onClick={()=>toggleCart(id)}>
+            <Button size="small" style={{color: '#333'}} onClick={()=>toggleCart(id)}>
                 {isInCart(id) ? "Remove" : "Add To Cart"}
             </Button>
         </>

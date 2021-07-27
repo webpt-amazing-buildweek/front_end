@@ -133,6 +133,7 @@ function Nav(props) {
           backgroundColor: "#FAFAFA",
           width: "100vw",
         }}
+        position="relative"
       >
         <div className={'flex flex-row mlfa-rotate-180'}>
           <Button onClick={handleDrawerOpen}>
@@ -140,7 +141,7 @@ function Nav(props) {
           </Button>
 
           <Link to="/">
-            <h1 className={" mt-6 ml-6 text-black text-4xl"}>Sauti Marketplace</h1>
+            <h1 className={" mt-6 ml-6 text-black text-4xl"} style={{color: 'black'}}>Sauti Marketplace</h1>
           </Link>
         </div>
       </AppBar>

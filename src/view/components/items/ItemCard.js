@@ -21,39 +21,39 @@ const ItemCard=(props)=>{
                     title={item.item_name}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5" component="h2"  style={{color: '#DDD', textShadow: '0 0 .5rem black'}}>
                         {item.item_name}
                     </Typography>
                     <CardContent className={"flex flex-row flex-wrap justify-between"}>
                     <Typography
                         variant="body2"
-                        color="primary"
+                        style={{color: '#f6ead4'}}
                         component="p"
                     >
                         Location: {item.location}
                     </Typography>
                     <Typography
                         variant="body2"
-                        color="primary"
                         component="p"
+                        style={{color: '#f6ead4'}}
                     >
                         Quantity: {item.quantity}
                     </Typography>
                     <Typography
                         variant="body2"
-                        color="primary"
+                        style={{color: '#f6ead4'}}
                         component="p"
                     >
                         ${item.price}
                     </Typography>
-                    <Button size="small" color="primary" onClick={()=>expandItem===id?setExpandItem(-1):setExpandItem(id)}>
+                    <Button size="small" style={{color: 'white'}} onClick={()=>expandItem===id?setExpandItem(-1):setExpandItem(id)}>
                         {expandItem===id? <ExpandLessIcon/>:<ExpandMoreIcon />}
                     </Button>
                     {
                         expandItem===id?
                         <Typography
                         variant="body2"
-                        color="primary"
+                        style={{color: '#f6ead4'}}
                         component="p"
                         >
                         Description: {item.description}

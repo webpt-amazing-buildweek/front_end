@@ -12,12 +12,13 @@ const useStyles = makeStyles({
     minWidth: 375,
     height: 450,
     padding: "5vh 0",
-    margin: "1vh 5vh",
+    margin: "5vh 5vh",
     borderRadius: "25px",
     top: "50%",
     left: "50%",
-    backgroundColor: '#FAFAFA',
-    boxShadow: '0 0 1rem #444'
+    backgroundColor: '#b4a284',
+    color:'#cbd18f',
+    boxShadow: '0 0 1rem #000'
   },
   media: {
     height: 140,
@@ -52,11 +53,12 @@ const ItemCards = (props) => {
   } else {
     return (
       <div className={"flex flex-col text-center"}>
-        <div className={"self-center bg-white text-white mt-32"}>
+        <div className={"parallax-wrapper self-center bg-white text-white mt-96"}>
           <div
             className={
-              "flex flex-row flex-wrap justify-center w-screen h-auto p-32 -my-72 bg-white shadow-inner "
+              "flex flex-row flex-wrap justify-center w-screen h-auto p-32 -my-48 shadow-inner "
             }
+            style={{backgroundColor:  "#a2a595"}}
           >
             {
               items.map((item,index)=>
