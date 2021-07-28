@@ -12,7 +12,7 @@ const schema = yup.object().shape({
 })
 
 function ItemForm() {
-  const [form, setForm] = useState([
+  const [form, setForm] = useState(
     {
       item_name: "",
       location: "",
@@ -20,7 +20,7 @@ function ItemForm() {
       price: "",
       description: ""
     }
-  ])
+  )
 
   const [errors, setErrors] = useState({
     item_name: "",
@@ -57,12 +57,11 @@ function ItemForm() {
 
   
 
-const validateForm = (schema, form, setDisabled) => {
-    console.log("this is validate form disabled value", disabled)
-    schema.isValid(form).then((valid) => setDisabled(!valid))
-}
-
-useEffect(() => {
+  
+  useEffect(() => {
+  const validateForm = (schema, form, setDisabled) => {
+      schema.isValid(form).then((valid) => setDisabled(!valid))
+  }
     validateForm(schema, form, setDisabled)
 }, [form])
 
