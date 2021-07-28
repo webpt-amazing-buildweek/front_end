@@ -11,7 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { logout } from "../../../src/state/actions";
 import { connect } from "react-redux";
 const useStyles = makeStyles({
@@ -33,8 +33,11 @@ function Nav(props) {
   const handleDrawerClose = () => {
     setState({ left: false });
   };
+
+  const history = useHistory()
   const handleLogout=()=>{
     props.logout();
+    history.push("/")
   };
   const renderUserNav = () => {
     if (props.user.id === -1) {
