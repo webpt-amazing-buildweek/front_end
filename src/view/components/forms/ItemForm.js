@@ -11,7 +11,7 @@ const schema = yup.object().shape({
     description: yup.string().required("Description is required"),
 })
 
-function ItemsList() {
+function ItemForm() {
   const [form, setForm] = useState([
     {
       item_name: "",
@@ -158,4 +158,4 @@ useEffect(() => {
   )
 }
 
-export default ItemsList
+export default ItemForm;

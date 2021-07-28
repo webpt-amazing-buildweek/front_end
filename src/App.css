@@ -11,6 +11,17 @@ html {
   overflow-x: hidden;
 }
 
+body {
+  margin: 0;
+  height: 100vh;
+  -webkit-perspective: 1px;
+          perspective: 1px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .recipes {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -43,8 +54,12 @@ h3 {
   text-shadow: 0 0 2.5rem black;
 }
 
+.input {
+  margin: 1vh auto;
+}
+
 .home {
-  background-image: url("./assets/pasta.jpg");
+  background-image: url("./assets/market-home.jpg");
 }
 
 .recipes-container {
@@ -84,4 +99,100 @@ h3 {
 
 .progress {
   color: black;
+}
+
+.parallax-wrapper {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 30vh;
+  padding-top: 20vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.parallax-wrapper::before {
+  background-color: black;
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: url("/src/assets/market-one.jpg");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: -300px;
+  background-size: 100%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateZ(-1px) scale(2);
+          transform: translateZ(-1px) scale(2);
+}
+
+.parallax-wrapper2 {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 30vh;
+  padding-top: 20vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.parallax-wrapper2::before {
+  background-color: black;
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: url("/src/assets/market-register.jpg");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: -600px;
+  background-size: 100%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateZ(-1px) scale(2);
+          transform: translateZ(-1px) scale(2);
+}
+
+.parallax-wrapper3 {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 30vh;
+  padding-top: 20vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.parallax-wrapper3::before {
+  background-color: black;
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: url("/src/assets/market-one.jpg");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: -300px;
+  background-size: 100%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateZ(-1px) scale(2);
+          transform: translateZ(-1px) scale(2);
 }

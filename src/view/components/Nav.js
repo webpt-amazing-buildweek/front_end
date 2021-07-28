@@ -10,11 +10,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import LocalBarIcon from '@material-ui/icons/LocalBar';
-import LocalDiningIcon from '@material-ui/icons/LocalDining';
-import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { logout } from "../../../src/state/actions";
+import { connect } from "react-redux";
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -24,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Nav() {
+function Nav(props) {
   const classes = useStyles();
   const [state, setState] = useState({ left: false });
 
@@ -32,8 +31,100 @@ export default function Nav() {
     setState({ left: true });
   };
   const handleDrawerClose = () => {
+    console.log("Closing Drawer")
     setState({ left: false });
   };
+
+  const history = useHistory()
+  const handleLogout=()=>{
+    props.logout();
+    history.push("/")
+  };
+  const renderUserNav = () => {
+    if (props.user.id === -1) {
+      return (
+      <>  
+      <ListItem button>
+        <ListItemIcon>
+          <LibraryBooksIcon />
+        </ListItemIcon>
+          <Link to={"login"} onClick={handleDrawerClose}>
+            <ListItemText primary="Log In" />
+          </Link>
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <LibraryBooksIcon />
+        </ListItemIcon>
+          <Link to={"signup"} onClick={handleDrawerClose}>
+            <ListItemText primary="Sign Up" />
+          </Link>
+      </ListItem>
+      </>
+      )
+    }
+    if (props.user.id >= 0) {
+      return (
+      <>
+      <ListItem button>
+        <ListItemIcon>
+          <LibraryBooksIcon />
+        </ListItemIcon>
+          <Link to={"marketplace"} onClick={handleDrawerClose}>
+            <ListItemText primary="Marketplace" />
+          </Link>
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <LibraryBooksIcon />
+        </ListItemIcon>
+          <Link to={"cart"} onClick={handleDrawerClose}>
+            <ListItemText primary="Cart" />
+          </Link>
+      </ListItem>
+      <ListItem button onClick={handleLogout}>
+        <ListItemIcon>
+          <LibraryBooksIcon />
+        </ListItemIcon>
+          <ListItemText primary="Logout" />
+      </ListItem>
+      </>
+      )
+    }
+    if (props.user.isOwner) {
+      return (
+        <>
+        <ListItem button>
+          <ListItemIcon>
+            <LibraryBooksIcon />
+          </ListItemIcon>
+            <Link to={"marketplace"} onClick={handleDrawerClose}>
+              <ListItemText primary="Marketplace" />
+            </Link>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <LibraryBooksIcon />
+          </ListItemIcon>
+            <Link to={"myitems"} onClick={handleDrawerClose}>
+              <ListItemText primary="My Items" />
+            </Link>
+        </ListItem>
+        <ListItem button onClick={handleLogout}>
+          <ListItemIcon>
+            <LibraryBooksIcon />
+          </ListItemIcon>
+            <ListItemText primary="Logout" />
+        </ListItem>
+        </>
+        )
+
+    }
+  }
+  // will handle logout then push to landing page
+  // const handleLogout = () => {
+
+  // }
 
   return (
     <>
@@ -44,6 +135,7 @@ export default function Nav() {
           backgroundColor: "#FAFAFA",
           width: "100vw",
         }}
+        position="relative"
       >
         <div className={'flex flex-row mlfa-rotate-180'}>
           <Button onClick={handleDrawerOpen}>
@@ -51,7 +143,7 @@ export default function Nav() {
           </Button>
 
           <Link to="/">
-            <h1 className={" mt-6 ml-6 text-black text-4xl"}>Grubspace</h1>
+            <h1 className={" mt-6 ml-6 text-black text-4xl"} style={{color: 'black'}}>Sauti Marketplace</h1>
           </Link>
         </div>
       </AppBar>
@@ -63,45 +155,14 @@ export default function Nav() {
           paper: classes.fullList,
         }}
       >
-        <List className={classes.list}>
+      <List className={classes.list}>
+        {renderUserNav()}
           <ListItem button>
             <ListItemIcon>
             <EmojiPeopleIcon />
             </ListItemIcon>
-            <Link to={"about"} onClick={handleDrawerClose}>
-              <ListItemText primary="About" />
-            </Link>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-             <LibraryBooksIcon />
-            </ListItemIcon>
-            <Link to={"chef"} onClick={handleDrawerClose}>
-              <ListItemText primary="Chef's Manifesto" />
-            </Link>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-             <LocalDiningIcon />
-            </ListItemIcon>
-            <Link to={"recipes"} onClick={handleDrawerClose}>
-              <ListItemText primary="Recipe Box" />
-            </Link>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-            <LocalGroceryStoreIcon />
-            </ListItemIcon>
-            <Link to={"nutrition"} onClick={handleDrawerClose}>
-              <ListItemText primary="Nutrition Corner" />
-            </Link>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-            <LocalBarIcon/>
-            </ListItemIcon>
-            <Link to={"cocktails"} onClick={handleDrawerClose}>
-              <ListItemText primary="Cocktail Culture" />
+            <Link to={"/"} onClick={handleDrawerClose}>
+              <ListItemText primary="Home" />
             </Link>
           </ListItem>
         </List>
@@ -109,3 +170,15 @@ export default function Nav() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+};
+
+const mapDispatchToProps = {
+  logout
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)
