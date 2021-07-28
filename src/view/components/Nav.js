@@ -33,7 +33,9 @@ function Nav(props) {
   const handleDrawerClose = () => {
     setState({ left: false });
   };
-
+  const handleLogout=()=>{
+    props.logout();
+  };
   const renderUserNav = () => {
     if (props.user.id === -1) {
       return (
@@ -76,13 +78,11 @@ function Nav(props) {
             <ListItemText primary="Cart" />
           </Link>
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={handleLogout}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={""} onClick={handleDrawerClose}>
-            <ListItemText primary="Logout" />
-          </Link>
+          <ListItemText primary="Logout" />
       </ListItem>
       </>
       )
@@ -106,13 +106,11 @@ function Nav(props) {
               <ListItemText primary="My Items" />
             </Link>
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={handleLogout}>
           <ListItemIcon>
             <LibraryBooksIcon />
           </ListItemIcon>
-            <Link to={"/"} onClick={() => {handleDrawerClose(); logout();}}>
-              <ListItemText primary="Logout" />
-            </Link>
+            <ListItemText primary="Logout" />
         </ListItem>
         </>
         )
