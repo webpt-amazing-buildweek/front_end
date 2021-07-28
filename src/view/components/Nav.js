@@ -31,6 +31,7 @@ function Nav(props) {
     setState({ left: true });
   };
   const handleDrawerClose = () => {
+    console.log("Closing Drawer")
     setState({ left: false });
   };
 

@@ -55,13 +55,14 @@ export const testResponse =()=>(dispatch)=>{
 
 
 // login
-export const postLogIn = (formValues) => (dispatch) =>{
+export const postLogIn = (formValues, handleAPIStatus) => (dispatch) =>{
   dispatch({type:API_STATUS_CHANGE,payload:{
     status:API_START,
     api:"postLogIn"
   }});
   axios.post(`${baseURL}/api/auth/login`,formValues)
   .then((res)=>{
+    handleAPIStatus(true)
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"postLogIn"}});
