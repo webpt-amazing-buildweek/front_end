@@ -30,7 +30,7 @@ function LoginForm(props) {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    props.postLogIn(loginState)
+    props.postLogIn(loginState, handleAPIStatus)
     history.push("/marketplace")
   };
 
@@ -57,12 +57,14 @@ function LoginForm(props) {
     setloginState({ ...loginState, [e.target.name]: e.target.value });
   };
 
-  //
-  // const handleAPIStatus=(isSuccessful)=>{
-  //   if(isSuccessful){
-  //   history.push("/marketplace")
-  //   }
-  //   }
+  
+  const handleAPIStatus=(isSuccessful)=>{
+    console.log('API handled', isSuccessful)
+    if(isSuccessful){
+    history.push("/marketplace")
+    // console.log(history)
+    }
+  }
 
   return (
     <div>
