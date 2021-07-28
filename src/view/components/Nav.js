@@ -11,7 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { logout } from "../../../src/state/actions";
 import { connect } from "react-redux";
 const useStyles = makeStyles({
@@ -35,12 +35,11 @@ function Nav(props) {
     setState({ left: false });
   };
 
-  const handleLogout = () => {
-    console.log("Handled Logout")
-    handleDrawerClose(); 
-    logout();
-  }
-
+  const history = useHistory()
+  const handleLogout=()=>{
+    props.logout();
+    history.push("/")
+  };
   const renderUserNav = () => {
     if (props.user.id === -1) {
       return (
@@ -83,13 +82,11 @@ function Nav(props) {
             <ListItemText primary="Cart" />
           </Link>
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={handleLogout}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={""} onClick={handleDrawerClose}>
-            <ListItemText primary="Logout" />
-          </Link>
+          <ListItemText primary="Logout" />
       </ListItem>
       </>
       )
@@ -117,9 +114,7 @@ function Nav(props) {
           <ListItemIcon>
             <LibraryBooksIcon />
           </ListItemIcon>
-            <Link to={"/"} >
-              <ListItemText primary="Logout" />
-            </Link>
+            <ListItemText primary="Logout" />
         </ListItem>
         </>
         )
