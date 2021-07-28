@@ -31,8 +31,15 @@ function Nav(props) {
     setState({ left: true });
   };
   const handleDrawerClose = () => {
+    console.log("Closing Drawer")
     setState({ left: false });
   };
+
+  const handleLogout = () => {
+    console.log("Handled Logout")
+    handleDrawerClose(); 
+    logout();
+  }
 
   const renderUserNav = () => {
     if (props.user.id === -1) {
@@ -106,11 +113,11 @@ function Nav(props) {
               <ListItemText primary="My Items" />
             </Link>
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={handleLogout}>
           <ListItemIcon>
             <LibraryBooksIcon />
           </ListItemIcon>
-            <Link to={"/"} onClick={() => {handleDrawerClose(); logout();}}>
+            <Link to={"/"} >
               <ListItemText primary="Logout" />
             </Link>
         </ListItem>

@@ -57,6 +57,13 @@ function LoginForm(props) {
     setloginState({ ...loginState, [e.target.name]: e.target.value });
   };
 
+  //
+  // const handleAPIStatus=(isSuccessful)=>{
+  //   if(isSuccessful){
+  //   history.push("/marketplace")
+  //   }
+  //   }
+
   return (
     <div>
       <h2>Login</h2>

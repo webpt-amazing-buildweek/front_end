@@ -62,6 +62,7 @@ export const postLogIn = (formValues) => (dispatch) =>{
   }});
   axios.post(`${baseURL}/api/auth/login`,formValues)
   .then((res)=>{
+    // handleAPIStatus(true)
     dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"postLogIn"}});
