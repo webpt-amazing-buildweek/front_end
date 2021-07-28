@@ -12,12 +12,12 @@ const Schema = yup.object().shape({
 });
 
 function LoginForm(props) {
-  const [loginState, setloginState] = useState([
+  const [loginState, setloginState] = useState(
     {
       username: "",
       password: ""
     }
-  ]);
+  );
 
   const [err, setErr] = useState({
     username: "",
@@ -31,7 +31,7 @@ function LoginForm(props) {
   const formSubmit = (e) => {
     e.preventDefault();
     props.postLogIn(loginState, handleAPIStatus)
-    history.push("/marketplace")
+    
   };
 
   const validate = (e) => {
@@ -59,10 +59,8 @@ function LoginForm(props) {
 
   
   const handleAPIStatus=(isSuccessful)=>{
-    console.log('API handled', isSuccessful)
     if(isSuccessful){
-    history.push("/marketplace")
-    // console.log(history)
+      history.push("/marketplace")
     }
   }
 
@@ -74,7 +72,7 @@ function LoginForm(props) {
         <label htmlFor="username">
           Username:
           <input
-            type="username"
+            type="text"
             placeholder="username"
             id="username"
             name="username"
