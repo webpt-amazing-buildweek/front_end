@@ -70,7 +70,9 @@ export const postLogIn = (formValues, handleAPIStatus) => (dispatch) =>{
     await dispatch({type:USER_LOGGED_IN,payload:res.data}); // 
     localStorage.setItem("authToken",res.data.token) //save the authentication
     localStorage.setItem('userObject', JSON.stringify(res.data))// save the user object in local storage
-    handleAPIStatus(true)
+    if(handleAPIStatus){
+      handleAPIStatus(true);
+    }
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -85,21 +87,24 @@ export const postLogIn = (formValues, handleAPIStatus) => (dispatch) =>{
 
 
 // signup
-export const createUser = (formValues) => (dispatch) => {
+export const createUser = (formValues,handleAPIStatus) => (dispatch) => {
   dispatch({type:API_STATUS_CHANGE,payload:{
     status:API_START,
     api:"createUser"
   }});
   console.log(formValues)
   axios.post(`${baseURL}/api/auth/register`,formValues)
-  .then((res)=>{
-    dispatch({type:API_STATUS_CHANGE,payload:{
+  .then(async(res)=>{
+    await dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"createUser"
     }});
     // dispatch other actions
     // dispatch USER_CREATED 
-    dispatch({type:USER_CREATED,payload:res.data})
+    await dispatch({type:USER_CREATED,payload:res.data});
+    if(handleAPIStatus){
+      handleAPIStatus(true);
+    }
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -138,20 +143,23 @@ export const getItems = () => (dispatch) => {
 
 
 // post new items
-export const createItem = (item) => (dispatch) => {
+export const createItem = (item, handleAPIStatus) => (dispatch) => {
   dispatch({type:API_STATUS_CHANGE,payload:{
     status:API_START,
     api:"createItem"
   }});
   axiosWithAuth(baseURL).post(`api/items`,item)
-  .then((res)=>{
-    dispatch({type:API_STATUS_CHANGE,payload:{
+  .then(async(res)=>{
+    await dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"createItem"
     }});
     // dispatch other actions
     // dispatch ITEM_CREATED
-    dispatch(getItems()); //make a get request to stay up to date with the backend
+    await dispatch(getItems()); //make a get request to stay up to date with the backend
+    if(handleAPIStatus){
+      handleAPIStatus(true);
+    }
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -166,19 +174,22 @@ export const createItem = (item) => (dispatch) => {
 
 
 // put item by id
-export const updateItem = (item,id) => (dispatch) => {
+export const updateItem = (item,id,handleAPIStatus) => (dispatch) => {
   dispatch({type:API_STATUS_CHANGE,payload:{
     status:API_START,
     api:"updateItem"
   }});
   axiosWithAuth(baseURL).put(`api/items/${id}`,item)
-  .then((res)=>{
-    dispatch({type:API_STATUS_CHANGE,payload:{
+  .then(async(res)=>{
+    await dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"updateItem"
     }});
     // dispatch other actions
-    dispatch(getItems()); //make a get request to stay up to date with the backend
+    await dispatch(getItems()); //make a get request to stay up to date with the backend
+    if(handleAPIStatus){
+      handleAPIStatus(true);
+    }
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{
@@ -190,18 +201,21 @@ export const updateItem = (item,id) => (dispatch) => {
 };
 
 // delete item by id
-export const deleteItem = (id) => (dispatch) => {
+export const deleteItem = (id,handleAPIStatus) => (dispatch) => {
   dispatch({type:API_STATUS_CHANGE,payload:{
     status:API_START,
     api:"deleteItem"
   }});
   axiosWithAuth(baseURL).delete(`api/items/${id}`)
-  .then((res)=>{
-    dispatch({type:API_STATUS_CHANGE,payload:{
+  .then(async(res)=>{
+    await dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
       api:"deleteItem"
     }});
-    dispatch(getItems()); //make a get request to stay up to date with the backend
+    await dispatch(getItems()); //make a get request to stay up to date with the backend
+    if(handleAPIStatus){
+      handleAPIStatus(true);
+    }
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{

@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
-import { getItems } from "../../state/actions";
+import { createItem, deleteItem, getItems, updateItem } from "../../state/actions";
 import { Link,useRouteMatch, Switch, Route } from "react-router-dom";
 import ItemPage from "./items/ItemPage";
 import ItemCards from "./items/ItemCards";
@@ -9,7 +9,7 @@ import { API_START } from "../../state/_shared/store/constants";
 import ItemForm from "./forms/ItemForm";
 const MyItems=(props)=>{
     const {getItems,apiStatus,myItems} = props;
-    
+    const [callAPI, setCallAPI] = useState();
     const match = useRouteMatch();
     console.log("this is the my item page",match.path)
     useEffect(()=>{
@@ -48,6 +48,9 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
         getItems:()=>dispatch(getItems()), 
+        createItem:(item,handleAPIStatus)=>dispatch(createItem(item,handleAPIStatus)),
+        updateItem:(item,id,handleAPIStatus)=>dispatch(updateItem(item,id,handleAPIStatus)),
+        deleteItem:(id,handleAPIStatus)=>dispatch(deleteItem(id,handleAPIStatus))
     };
 };
 export default connect(mapStateToProps,mapDispatchToProps)(MyItems);
