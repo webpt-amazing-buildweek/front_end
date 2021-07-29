@@ -50,7 +50,7 @@ function Nav(props) {
         </ListItemIcon>
             <ListItemText primary="Log In" />
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={()=>history.push("/signup")}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
@@ -63,7 +63,7 @@ function Nav(props) {
       // user is logged in
       return (
       <>
-      <ListItem button>
+      <ListItem button onClick={()=>history.push("/marketplace")}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
@@ -72,7 +72,7 @@ function Nav(props) {
       {
         props.user.isOwner?
         <>
-          <ListItem button>
+          <ListItem button onClick={()=>history.push("/myitems")}>
             <ListItemIcon>
               <LibraryBooksIcon />
             </ListItemIcon>
