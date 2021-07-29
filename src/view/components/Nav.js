@@ -44,44 +44,52 @@ function Nav(props) {
     if (props.user.id === -1) {
       return (
       <>  
-      <ListItem button>
+      <ListItem button onClick={()=>history.push("/login")}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={"login"} onClick={handleDrawerClose}>
             <ListItemText primary="Log In" />
-          </Link>
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={"signup"} onClick={handleDrawerClose}>
             <ListItemText primary="Sign Up" />
-          </Link>
       </ListItem>
       </>
       )
     }
-    if (props.user.id >= 0) {
+    else {
+      // user is logged in
       return (
       <>
       <ListItem button>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={"marketplace"} onClick={handleDrawerClose}>
             <ListItemText primary="Marketplace" />
-          </Link>
       </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <LibraryBooksIcon />
-        </ListItemIcon>
-          <Link to={"cart"} onClick={handleDrawerClose}>
+      {
+        props.user.isOwner?
+        <>
+          <ListItem button>
+            <ListItemIcon>
+              <LibraryBooksIcon />
+            </ListItemIcon>
+                <ListItemText primary="My Items" />
+          </ListItem>
+        </>
+        :
+        <>
+        <ListItem button>
+          <ListItemIcon>
+            <LibraryBooksIcon />
+          </ListItemIcon>
             <ListItemText primary="Cart" />
-          </Link>
-      </ListItem>
+        </ListItem>
+        </>
+      }
+      
       <ListItem button onClick={handleLogout}>
         <ListItemIcon>
           <LibraryBooksIcon />
@@ -90,35 +98,6 @@ function Nav(props) {
       </ListItem>
       </>
       )
-    }
-    if (props.user.isOwner) {
-      return (
-        <>
-        <ListItem button>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-            <Link to={"marketplace"} onClick={handleDrawerClose}>
-              <ListItemText primary="Marketplace" />
-            </Link>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-            <Link to={"myitems"} onClick={handleDrawerClose}>
-              <ListItemText primary="My Items" />
-            </Link>
-        </ListItem>
-        <ListItem button onClick={handleLogout}>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-            <ListItemText primary="Logout" />
-        </ListItem>
-        </>
-        )
-
     }
   }
   // will handle logout then push to landing page
@@ -161,9 +140,7 @@ function Nav(props) {
             <ListItemIcon>
             <EmojiPeopleIcon />
             </ListItemIcon>
-            <Link to={"/"} onClick={handleDrawerClose}>
               <ListItemText primary="Home" />
-            </Link>
           </ListItem>
         </List>
       </Drawer>

@@ -61,16 +61,16 @@ export const postLogIn = (formValues, handleAPIStatus) => (dispatch) =>{
     api:"postLogIn"
   }});
   axios.post(`${baseURL}/api/auth/login`,formValues)
-  .then((res)=>{
-    handleAPIStatus(true)
-    dispatch({type:API_STATUS_CHANGE,payload:{
+  .then(async(res)=>{
+    await dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_SUCCESS,
-      api:"postLogIn"}});
-    // dispatch other actions
-    // dispatch USER_LOGGED_IN payload: res.data
-    dispatch({type:USER_LOGGED_IN,payload:res.data});
+      api:"postLogIn"}});//await changes behavior. wait for reducer to be called
+      // dispatch other actions
+      // dispatch USER_LOGGED_IN payload: res.data
+    await dispatch({type:USER_LOGGED_IN,payload:res.data}); // 
     localStorage.setItem("authToken",res.data.token) //save the authentication
     localStorage.setItem('userObject', JSON.stringify(res.data))// save the user object in local storage
+    handleAPIStatus(true)
   })
   .catch((err)=>{
     dispatch({type:API_STATUS_CHANGE,payload:{

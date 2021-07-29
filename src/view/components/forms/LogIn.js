@@ -27,11 +27,18 @@ function LoginForm(props) {
   const [isValid, setIsValid] = useState(true);
 
   const history = useHistory();
-
+  const handleAPIStatus=(isSuccessful)=>{
+    if(isSuccessful){
+      console.log("history pushed",history.push);
+      history.push("/marketplace");
+      console.log("history pushed done",history.push);
+    }
+  }
   const formSubmit = (e) => {
     e.preventDefault();
     props.postLogIn(loginState, handleAPIStatus)
-    
+    // console.log("history push before api return",history.push);
+    // history.push("/marketplace");
   };
 
   const validate = (e) => {
@@ -58,11 +65,7 @@ function LoginForm(props) {
   };
 
   
-  const handleAPIStatus=(isSuccessful)=>{
-    if(isSuccessful){
-      history.push("/marketplace")
-    }
-  }
+
 
   return (
     <div>
