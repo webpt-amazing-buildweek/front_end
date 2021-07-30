@@ -18,7 +18,8 @@ const PrivateRoute = (props) => {
                 <Switch>
                     <Route path="/marketplace" {...props} component={Marketplace} />
                     <Route path="/myitems" {...props} component={MyItem} />
-                    <Redirect path="/" to={"/"}/>
+                    <Route path="/redirected" />
+                    <Redirect path="/" to={"/redirected"}/>
                 </Switch>
             );
         }
@@ -26,7 +27,8 @@ const PrivateRoute = (props) => {
             return(
                 <Switch>
                     <Route path={"/marketplace"} {...props} component={Marketplace} />
-                    <Redirect path="/" to={"/"}/>
+                    <Route path="/redirected" />
+                    <Redirect path="/" to={"/redirected"}/>
                 </Switch>
             )
         }

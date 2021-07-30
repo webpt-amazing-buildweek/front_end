@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import { useHistory } from "react-router-dom";
+import {useParams } from "react-router-dom";
 
 
 const schema = yup.object().shape({
     item_name: yup.string().required("Name of item required"),
     location: yup.string().required("Location required"),
-    quanitity: yup.number().required("Quantity is required").positive().integer(),
+    quantity: yup.number().required("Quantity is required").positive().integer(),
     price: yup.number().required("Price is required").positive(),
     description: yup.string().required("Description is required"),
 })
 
-function ItemForm() {
+function ItemForm(props) {
+  const {apiCall} = props;
+  const {id} = useParams();
   const [form, setForm] = useState(
     {
       item_name: "",
       location: "",
-      quanitity: "",
+      quantity: "",
       price: "",
       description: ""
     }
@@ -25,7 +27,7 @@ function ItemForm() {
   const [errors, setErrors] = useState({
     item_name: "",
     location: "",
-    quanitity: "",
+    quantity: "",
     price: "",
     description: ""
   })
@@ -41,22 +43,27 @@ function ItemForm() {
   }
 
   const handleChange = (event) => {
-    const { name, value } = event.target
-    const valueToUse = value
-
+    const { name, value, type } = event.target;
+    let valueToUse;
+    if(type==="number"){
+      if(name==="price"){
+        valueToUse = parseFloat(value);
+      }
+      else{
+        valueToUse = parseInt(value);
+      }
+    }
+    else{
+      valueToUse = value;
+    }
     setFormErrors(name, valueToUse)
     setForm({ ...form, [name]: valueToUse })
   }
 
-  const history = useHistory()
-
   const submit = (e) => {
-    e.preventDefault()
-    history.push("/user")
+    e.preventDefault();
+    apiCall(form,id);
   }
-
-  
-
   
   useEffect(() => {
   const validateForm = (schema, form, setDisabled) => {
@@ -67,7 +74,7 @@ function ItemForm() {
 
   return (
     <div>
-      <h2>Items List</h2>
+      <h2>Item Form</h2>
       <form onSubmit={submit}>
         <div>
           <label htmlFor="item_name">
@@ -102,26 +109,26 @@ function ItemForm() {
           </div>
         </div>
         <div>
-          <label htmlFor="quanitity">
-          Quanitity:
+          <label htmlFor="quantity">
+          quantity:
             <input
-              type="text"
-              placeholder="quanitity"
-              id="quanitity"
-              name="quanitity"
-              value={form.quanitity}
+              type="number"
+              placeholder="quantity"
+              id="quantity"
+              name="quantity"
+              value={form.quantity}
               onChange={handleChange}
             />
           </label>
           <div style={{ color: "red" }}>
-            <div>{errors.quanitity}</div>
+            <div>{errors.quantity}</div>
           </div>
         </div>
         <div>
           <label htmlFor="price">
           Price:
             <input
-              type="text"
+              type="number"
               placeholder="price"
               id="price"
               name="price"
