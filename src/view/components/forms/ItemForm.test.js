@@ -11,7 +11,7 @@ test("render without errors",()=>{
 })
 // item_name: "",
 //     location: "",
-//     quanitity: "",
+//     quantity: "",
 //     price: "",
 //     description: ""
 //   }
@@ -23,22 +23,22 @@ test("can input fields",()=>{
     );
     const item_name = screen.getByLabelText(/Item Name/i);
     const location = screen.getByLabelText(/location/i);
-    const quanitity = screen.getByLabelText(/quanitity/i);
+    const quantity = screen.getByLabelText(/quantity/i);
     const price = screen.getByLabelText(/price/i);
     const description = screen.getByLabelText(/description/i);
     expect(item_name).toBeInTheDocument();
     expect(location).toBeInTheDocument();
-    expect(quanitity).toBeInTheDocument();
+    expect(quantity).toBeInTheDocument();
     expect(price).toBeInTheDocument();
     expect(description).toBeInTheDocument();
     userEvent.type(item_name,"some name");
     userEvent.type(location,"somewhere");
-    userEvent.type(quanitity,"1");
+    userEvent.type(quantity,"1");
     userEvent.type(price,"10");
     userEvent.type(description, "some text");
     expect(item_name).toHaveValue("some name");
     expect(location).toHaveValue("somewhere");
-    expect(quanitity).toHaveValue("1");
+    expect(quantity).toHaveValue("1");
     expect(price).toHaveValue("10");
     expect(description).toHaveValue("some text");
     
