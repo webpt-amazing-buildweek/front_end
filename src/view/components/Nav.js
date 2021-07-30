@@ -31,7 +31,6 @@ function Nav(props) {
     setState({ left: true });
   };
   const handleDrawerClose = () => {
-    console.log("Closing Drawer")
     setState({ left: false });
   };
 
@@ -44,13 +43,13 @@ function Nav(props) {
     if (props.user.id === -1) {
       return (
       <>  
-      <ListItem button onClick={()=>history.push("/login")}>
+      <ListItem button onClick={()=>{handleDrawerClose();history.push("/login");}}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
             <ListItemText primary="Log In" />
       </ListItem>
-      <ListItem button onClick={()=>history.push("/signup")}>
+      <ListItem button onClick={()=>{handleDrawerClose();history.push("/signup")}}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
@@ -63,7 +62,7 @@ function Nav(props) {
       // user is logged in
       return (
       <>
-      <ListItem button onClick={()=>history.push("/marketplace")}>
+      <ListItem button onClick={()=>{handleDrawerClose();history.push("/marketplace")}}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
@@ -72,7 +71,7 @@ function Nav(props) {
       {
         props.user.isOwner?
         <>
-          <ListItem button onClick={()=>history.push("/myitems")}>
+          <ListItem button onClick={()=>{handleDrawerClose();history.push("/myitems")}}>
             <ListItemIcon>
               <LibraryBooksIcon />
             </ListItemIcon>
@@ -81,7 +80,7 @@ function Nav(props) {
         </>
         :
         <>
-        <ListItem button>
+        <ListItem button onClick={()=>{handleDrawerClose();history.push("/cart")}}>
           <ListItemIcon>
             <LibraryBooksIcon />
           </ListItemIcon>

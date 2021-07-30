@@ -9,31 +9,25 @@ const PrivateRoute = (props) => {
     if (localStorage.getItem("authToken")) {
         // render the component and pass props
         const {isOwner} = props;
-        console.log("path: ", match.url);
+        console.log("url: ", match.url);
         console.log("isOwner: ",isOwner);
         if(isOwner){
+            // Switch is needed whenever needs to only render one route.
+            // even though PrivateRoute is a child of the Switch in App.js
             return(
-                <>
-                {/* // <Switch> */}
+                <Switch>
                     <Route path="/marketplace" {...props} component={Marketplace} />
                     <Route path="/myitems" {...props} component={MyItem} />
-                    {/* <Route path="/">
-                        <Redirect to="/" />
-                    </Route> */}
-                {/* </Switch> */}
-                </>
+                    <Redirect path="/" to={"/"}/>
+                </Switch>
             );
         }
         else{
             return(
-                <>
-                {/* // <Switch> */}
+                <Switch>
                     <Route path={"/marketplace"} {...props} component={Marketplace} />
-                    {/* <Route path="/">
-                        <Redirect to="/" />
-                    </Route> */}
-                    {/* </Switch> */}
-                </>
+                    <Redirect path="/" to={"/"}/>
+                </Switch>
             )
         }
     }

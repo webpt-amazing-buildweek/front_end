@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { useParams } from "react-router-dom";
+import ItemForm from "../forms/ItemForm";
 const ItemPage=(props)=>{
     const params = useParams();
     const {myItems} = props;
@@ -41,6 +42,7 @@ const ItemPage=(props)=>{
             >
                 Description: {item.description}
             </Typography>
+            <ItemForm />
         </>
     )
 };
