@@ -6,32 +6,23 @@
 }
 
 html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   overflow-x: hidden;
 }
 
 body {
   margin: 0;
   height: 100vh;
-  -webkit-perspective: 1px;
-          perspective: 1px;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  perspective: 1px;
+  transform-style: preserve-3d;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
 .recipes {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 h1 {
@@ -106,10 +97,8 @@ h3 {
   height: 100vh;
   margin-top: 30vh;
   padding-top: 20vh;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
 }
 
 .parallax-wrapper::before {
@@ -129,8 +118,7 @@ h3 {
   background-repeat: no-repeat;
   position: absolute;
   z-index: -1;
-  -webkit-transform: translateZ(-1px) scale(2);
-          transform: translateZ(-1px) scale(2);
+  transform: translateZ(-1px) scale(2);
 }
 
 .parallax-wrapper2 {
@@ -138,10 +126,8 @@ h3 {
   height: 100vh;
   margin-top: 30vh;
   padding-top: 20vh;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
 }
 
 .parallax-wrapper2::before {
@@ -161,8 +147,7 @@ h3 {
   background-repeat: no-repeat;
   position: absolute;
   z-index: -1;
-  -webkit-transform: translateZ(-1px) scale(2);
-          transform: translateZ(-1px) scale(2);
+  transform: translateZ(-1px) scale(2);
 }
 
 .parallax-wrapper3 {
@@ -170,10 +155,8 @@ h3 {
   height: 100vh;
   margin-top: 30vh;
   padding-top: 20vh;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
 }
 
 .parallax-wrapper3::before {
@@ -193,6 +176,36 @@ h3 {
   background-repeat: no-repeat;
   position: absolute;
   z-index: -1;
-  -webkit-transform: translateZ(-1px) scale(2);
-          transform: translateZ(-1px) scale(2);
+  transform: translateZ(-1px) scale(2);
 }
+
+.parallax-wrapper4 {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 30vh;
+  padding-top: 20vh;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+}
+
+.parallax-wrapper4::before {
+  background-color: black;
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: url("/src/assets/market-one.jpg");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: -300px;
+  background-size: 100%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  transform: translateZ(-1px) scale(2);
+}
+
+/*# sourceMappingURL=App.css.map */
