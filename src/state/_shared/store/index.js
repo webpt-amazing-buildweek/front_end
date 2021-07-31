@@ -55,4 +55,5 @@ export const itemsInitialState = [];
 //    price: float
 //    description: string
 //    user_id: integer
+//    image_url: string
 // }

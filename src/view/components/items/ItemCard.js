@@ -1,5 +1,4 @@
 import React from "react";
-import placeholder from "../../../assets/placeholder.png";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -17,7 +16,7 @@ const ItemCard=(props)=>{
             <CardActionArea className={classes.action}>
                 <CardMedia
                     className={classes.media}
-                    image={placeholder}
+                    image={item.image_url}
                     title={item.item_name}
                 />
                 <CardContent>

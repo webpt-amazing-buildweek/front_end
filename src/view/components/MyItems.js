@@ -7,14 +7,31 @@ import ItemCards from "./items/ItemCards";
 import { Button } from "@material-ui/core";
 import { API_START } from "../../state/_shared/store/constants";
 import ItemForm from "./forms/ItemForm";
+import { useSearchBar } from "../../common/hooks/useSearchBar";
 const MyItems=(props)=>{
     const {getItems,apiStatus,myItems} = props;
+    
+    const [searchItem, setSearchTerm, searchValue, setInitialSearch] = useSearchBar(myItems)
+    console.log(myItems)
+    console.log(searchItem)
+    useEffect(()=>{
+        // initial API call on mount
+        getItems();
+        setInitialSearch([...myItems])
+    },[getItems]);
+
     const match = useRouteMatch();
     console.log("this is the my item page",match.path)
     useEffect(()=>{
         // initial API call on mount
         getItems();
     },[getItems]);
+
+
+    const handleSearchTerm = (e) => {
+      setSearchTerm(e.target.value)
+    }
+
     const history = useHistory();
     const renderButtons=(id)=>{
         return(
@@ -50,12 +67,21 @@ const MyItems=(props)=>{
             <Switch>
                 <Route path={`${match.path}/:id`}>
                     <>
-                        <ItemPage myItems={myItems} />
-                        <ItemForm apiCall={updateItem}/>
+                        <ItemPage myItems={myItems} apiCall={updateItem}/>
+                        
                     </>
                 </Route>
                 <Route path={`${match.path}`}>
                     <>
+                      <div className={"flex mx-w-sm mx-auto px-40"}>
+                          <div>
+                            <input 
+                              value={searchValue}
+                              placeholder="Search..."
+                              onChange={handleSearchTerm}
+                            />
+                         </div>
+                        </div> 
                         <ItemCards isLoading={apiStatus===API_START} items={myItems} renderButtons={renderButtons}/>
                         <div>spacer</div>
                         <div>spacer</div>
