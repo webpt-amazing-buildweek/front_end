@@ -48,11 +48,15 @@ const Marketplace=(props)=>{
 
 
       <>
-        <input 
-        value={searchValue}
-        placeholder="Search..."
-        onChange={handleSearchTerm}
-        />
+        <div className={"flex mx-w-sm mx-auto px-40"}>
+          <div>
+            <input 
+            value={searchValue}
+            placeholder="Search..."
+            onChange={handleSearchTerm}
+            />
+          </div>
+        </div>
         <ItemCards isLoading={apiStatus===API_START} items={searchItem} renderButtons={renderButtons}/>
       </>
     );
