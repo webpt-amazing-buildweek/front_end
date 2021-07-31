@@ -14,6 +14,8 @@ import {
 //setUser
 export const logout=()=>{
   // remove token from localStorage
+  console.log("logout complete")
+  localStorage.clear()
   return {type:USER_LOGGED_OUT}
 };
 export const addToCart=(id)=>{

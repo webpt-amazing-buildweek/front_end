@@ -18,10 +18,16 @@ module.exports = {
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
-    }
+    },
+    textShadow: {
+      'default': '0 2px 0 #000',
+      'md': '0 2px 2px #000',
+      'h2': '0 0 1rem #FF0000, 0 0 1rem #0000FF',
+      'h1': '0 0 1rem rgba(0, 0, 0, .8), 0 0 1rem rgba(0, 0, 0, .9)',
+   }
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('tailwindcss-textshadow')],
 }

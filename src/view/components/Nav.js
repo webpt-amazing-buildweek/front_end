@@ -11,7 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { logout } from "../../../src/state/actions";
 import { connect } from "react-redux";
 const useStyles = makeStyles({
@@ -34,89 +34,69 @@ function Nav(props) {
     setState({ left: false });
   };
 
+  const history = useHistory()
+  const handleLogout=()=>{
+    props.logout();
+    history.push("/")
+  };
   const renderUserNav = () => {
     if (props.user.id === -1) {
       return (
       <>  
-      <ListItem button>
+      <ListItem button onClick={()=>{handleDrawerClose();history.push("/login");}}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={"login"} onClick={handleDrawerClose}>
             <ListItemText primary="Log In" />
-          </Link>
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={()=>{handleDrawerClose();history.push("/signup")}}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={"signup"} onClick={handleDrawerClose}>
             <ListItemText primary="Sign Up" />
-          </Link>
       </ListItem>
       </>
       )
     }
-    if (props.user.id >= 0) {
+    else {
+      // user is logged in
       return (
       <>
-      <ListItem button>
+      <ListItem button onClick={()=>{handleDrawerClose();history.push("/marketplace")}}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={"marketplace"} onClick={handleDrawerClose}>
             <ListItemText primary="Marketplace" />
-          </Link>
       </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <LibraryBooksIcon />
-        </ListItemIcon>
-          <Link to={"cart"} onClick={handleDrawerClose}>
+      {
+        props.user.isOwner?
+        <>
+          <ListItem button onClick={()=>{handleDrawerClose();history.push("/myitems")}}>
+            <ListItemIcon>
+              <LibraryBooksIcon />
+            </ListItemIcon>
+                <ListItemText primary="My Items" />
+          </ListItem>
+        </>
+        :
+        <>
+        <ListItem button onClick={()=>{handleDrawerClose();history.push("/cart")}}>
+          <ListItemIcon>
+            <LibraryBooksIcon />
+          </ListItemIcon>
             <ListItemText primary="Cart" />
-          </Link>
-      </ListItem>
-      <ListItem button>
+        </ListItem>
+        </>
+      }
+      
+      <ListItem button onClick={()=>{handleLogout();history.push("/");}}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
-          <Link to={""} onClick={handleDrawerClose}>
-            <ListItemText primary="Logout" />
-          </Link>
+          <ListItemText primary="Logout" />
       </ListItem>
       </>
       )
-    }
-    if (props.user.isOwner) {
-      return (
-        <>
-        <ListItem button>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-            <Link to={"marketplace"} onClick={handleDrawerClose}>
-              <ListItemText primary="Marketplace" />
-            </Link>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-            <Link to={"myitems"} onClick={handleDrawerClose}>
-              <ListItemText primary="My Items" />
-            </Link>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-            <Link to={"/"} onClick={() => {handleDrawerClose(); logout();}}>
-              <ListItemText primary="Logout" />
-            </Link>
-        </ListItem>
-        </>
-        )
-
     }
   }
   // will handle logout then push to landing page
@@ -133,6 +113,7 @@ function Nav(props) {
           backgroundColor: "#FAFAFA",
           width: "100vw",
         }}
+        position="relative"
       >
         <div className={'flex flex-row mlfa-rotate-180'}>
           <Button onClick={handleDrawerOpen}>
@@ -140,7 +121,7 @@ function Nav(props) {
           </Button>
 
           <Link to="/">
-            <h1 className={" mt-6 ml-6 text-black text-4xl"}>Sauti Marketplace</h1>
+            <h1 className={" mt-6 ml-6 text-black text-4xl"} style={{color: 'black'}}>Sauti Marketplace</h1>
           </Link>
         </div>
       </AppBar>
@@ -158,9 +139,7 @@ function Nav(props) {
             <ListItemIcon>
             <EmojiPeopleIcon />
             </ListItemIcon>
-            <Link to={"/"} onClick={handleDrawerClose}>
               <ListItemText primary="Home" />
-            </Link>
           </ListItem>
         </List>
       </Drawer>
