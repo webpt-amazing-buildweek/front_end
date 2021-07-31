@@ -33,9 +33,10 @@ const useStyles = makeStyles({
 
 const ItemCards = (props) => {
   const { items, isLoading, renderButtons } = props;
-
   const [expandItem, setExpandItem] = useState(-1);
   const classes = useStyles();
+
+    
 
   if (isLoading) {
     return (
@@ -60,6 +61,7 @@ const ItemCards = (props) => {
             }
             style={{backgroundColor:  "#a2a595"}}
           >
+          
             {
               items.map((item,index)=>
               <ItemCard key={index} item={item} classes={classes} expandItem={expandItem} setExpandItem={setExpandItem} renderButtons={renderButtons}/>)
