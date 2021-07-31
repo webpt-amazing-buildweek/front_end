@@ -89,7 +89,7 @@ function Nav(props) {
         </>
       }
       
-      <ListItem button onClick={handleLogout}>
+      <ListItem button onClick={()=>{handleLogout();history.push("/");}}>
         <ListItemIcon>
           <LibraryBooksIcon />
         </ListItemIcon>
