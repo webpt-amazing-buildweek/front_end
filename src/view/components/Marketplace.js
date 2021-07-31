@@ -1,15 +1,20 @@
-import React, {useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import ItemCards from "./items/ItemCards";
 import { connect } from "react-redux";
 import { getItems,addToCart, removeFromCart } from "../../state/actions";
 import { API_START } from "../../state/_shared/store/constants";
+import { useSearchBar } from "../../common/hooks/useSearchBar";
 
 import { Button } from "@material-ui/core";
 const Marketplace=(props)=>{
     const {items, apiStatus,getItems} = props;
+    const [searchItem, setSearchTerm, searchValue, setInitialSearch] = useSearchBar(items)
+    console.log(items)
+    console.log(searchItem)
     useEffect(()=>{
         // initial API call on mount
         getItems();
+        setInitialSearch([...items])
     },[getItems]);
     const isInCart=(id)=>{
         // helper function to check if an item is in the cart
@@ -33,11 +38,27 @@ const Marketplace=(props)=>{
       );
     };
 
+    const handleSearchTerm = (e) => {
+      setSearchTerm(e.target.value)
+    }
+
+
 
     return (
-        <>
-            <ItemCards isLoading={apiStatus===API_START} items={items} renderButtons={renderButtons}/>
-        </>
+
+
+      <>
+        <div className={"flex mx-w-sm mx-auto px-40"}>
+          <div>
+            <input 
+            value={searchValue}
+            placeholder="Search..."
+            onChange={handleSearchTerm}
+            />
+          </div>
+        </div>
+        <ItemCards isLoading={apiStatus===API_START} items={searchItem} renderButtons={renderButtons}/>
+      </>
     );
 };
 const mapStateToProps=(state)=>{

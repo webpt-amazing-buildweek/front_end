@@ -30,9 +30,9 @@ const signUpFormSchema = yup.object().shape({
 
 const validateForm=(schema,formValues,setIsValid)=>{
     schema.isValid(formValues)
-    .then((valid)=>setIsValid(valid));
+    .then((valid)=> setIsValid(valid));
 };
-
+ 
 const initialValues = {
     username: "",
     email: "",
@@ -57,6 +57,7 @@ function SignUp(props) {
     }, [formValues]);
 
     const handleChange = (event) => {
+      console.log("errors" , formErrors)
         handleChangeHelper({
             event,
             schema: signUpFormSchema,
@@ -69,6 +70,7 @@ function SignUp(props) {
     };
 
     const handleSubmit = (event) => {
+        
         handleSubmitHelper(event);
         props.createUser(formValues);
         history.push("/login");
@@ -76,7 +78,7 @@ function SignUp(props) {
 
     return (
         <div className={"flex flex-col text-center"}>
-            <div className={"parallax-wrapper2 self-center text-white mt-96"}
+            <div className={"parallax-wrapper2 self-center text-black mt-96"}
             style={{background: '#e06706'}}
             >
                 <form className={"signup-form"}
