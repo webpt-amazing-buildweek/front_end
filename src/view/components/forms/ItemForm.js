@@ -9,6 +9,7 @@ const schema = yup.object().shape({
     quantity: yup.number().required("Quantity is required").positive().integer(),
     price: yup.number().required("Price is required").positive(),
     description: yup.string().required("Description is required"),
+    image_url:yup.string()
 })
 
 function ItemForm(props) {
@@ -20,7 +21,8 @@ function ItemForm(props) {
       location: "",
       quantity: "",
       price: "",
-      description: ""
+      description: "",
+      image_url:""
     }
   )
 
@@ -29,7 +31,8 @@ function ItemForm(props) {
     location: "",
     quantity: "",
     price: "",
-    description: ""
+    description: "",
+    image_url:""
   })
 
   const [disabled, setDisabled] = useState(true)
@@ -154,6 +157,22 @@ function ItemForm(props) {
           </label>
           <div style={{ color: "red" }}>
             <div>{errors.description}</div>
+          </div>
+        </div>
+        <div>
+          <label htmlFor="image_url">
+            Image URL
+            <input
+              type="text"
+              placeholder="url"
+              id="image_url"
+              name="image_url"
+              value={form.image_url}
+              onChange={handleChange}
+            />
+          </label>
+          <div style={{ color: "red" }}>
+            <div>{errors.image_url}</div>
           </div>
         </div>
         <button disabled={disabled}>
