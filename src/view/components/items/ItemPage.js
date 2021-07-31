@@ -1,9 +1,10 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { useParams } from "react-router-dom";
+import ItemForm from "../forms/ItemForm";
 const ItemPage=(props)=>{
     const params = useParams();
-    const {myItems} = props;
+    const {myItems,apiCall} = props;
     const item = myItems.find(item=>parseInt(params.id)===item.id);
     if(!item){
         return <div></div>;
@@ -41,6 +42,7 @@ const ItemPage=(props)=>{
             >
                 Description: {item.description}
             </Typography>
+            <ItemForm apiCall={apiCall} initialForm={item}/>
         </>
     )
 };

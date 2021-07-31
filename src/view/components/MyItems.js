@@ -50,8 +50,8 @@ const MyItems=(props)=>{
             <Switch>
                 <Route path={`${match.path}/:id`}>
                     <>
-                        <ItemPage myItems={myItems} />
-                        <ItemForm apiCall={updateItem}/>
+                        <ItemPage myItems={myItems} apiCall={updateItem}/>
+                        
                     </>
                 </Route>
                 <Route path={`${match.path}`}>

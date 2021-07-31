@@ -13,17 +13,23 @@ const schema = yup.object().shape({
 })
 
 function ItemForm(props) {
-  const {apiCall} = props;
+  const {apiCall,initialForm} = props;
   const {id} = useParams();
-  const [form, setForm] = useState(
-    {
-      item_name: "",
-      location: "",
-      quantity: "",
-      price: "",
-      description: "",
-      image_url:""
+  const [form, setForm] = useState(()=>{
+    if(initialForm){
+      return initialForm;
     }
+    else{
+      return {
+        item_name: "",
+        location: "",
+        quantity: "",
+        price: "",
+        description: "",
+        image_url:""
+      };
+    }
+  }
   )
 
   const [errors, setErrors] = useState({
