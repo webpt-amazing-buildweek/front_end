@@ -4,35 +4,13 @@ import * as yup from 'yup'
 import { connect } from "react-redux"
 import { createUser } from "../../../state/actions";
 
-
-const displayErrors=(formErrors)=>{
-    return Object.keys(formErrors).map((key, i) => formErrors[key] === '' ? '' : <div key={i}> {formErrors[key]} </div>);
-};
-
-const handleChangeHelper=({event, schema, formValues, setFormValues, formErrors, setFormErrors, setIsValid})=>{
-    const {name, value, checked, type} = event.target;
-    const inputValue = type === 'checkbox' ? checked:value;
-    const newFormValues = {...formValues, [name]: inputValue};
-    validateForm(schema, newFormValues, setIsValid);
-    setFormValues(newFormValues);
-};
-
-const handleSubmitHelper = (event) => {
-    event.preventDefault();
-};
-
 const signUpFormSchema = yup.object().shape({
-    name:yup.string().required('Name'),
+    username:yup.string().required('Name'),
     email:yup.string().email().required('Email'),
     isOwner:yup.boolean(),
     password:yup.string().min(8,'Password must have at least 8 characters').required('Password')
 });
 
-const validateForm=(schema,formValues,setIsValid)=>{
-    schema.isValid(formValues)
-    .then((valid)=> setIsValid(valid));
-};
- 
 const initialValues = {
     username: "",
     email: "",
@@ -51,29 +29,45 @@ function SignUp(props) {
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState(initialErrorValues);
 
-
-    useEffect(() => {
-        validateForm(signUpFormSchema, formValues, setIsValid); 
-    }, [formValues]);
+    const displayErrors=(formErrors)=>{
+        return Object.keys(formErrors).map((key, i) => formErrors[key] === '' ? '' : <div key={i}> {formErrors[key]} </div>);
+    };
+    const validate = (name,value) => {
+        yup.reach(signUpFormSchema,name)
+           .validate(value)
+           .then( valid => {
+              setFormErrors((prevErr)=>({
+                ...prevErr, [name]: ""
+              }))
+              setIsValid(valid);
+           })
+           .catch( error => {
+             setFormErrors((prevErr)=>({
+              ...prevErr, [name]: error.errors[0]
+             }))
+           })
+        };
 
     const handleChange = (event) => {
-      console.log("errors" , formErrors)
-        handleChangeHelper({
-            event,
-            schema: signUpFormSchema,
-            formValues,
-            setFormValues,
-            formErrors,
-            setFormErrors,
-            setIsValid
-        });
+        const {name, value, checked, type} = event.target;
+        const inputValue = type === 'checkbox' ? checked:value;
+        const newFormValues = {...formValues, [name]: inputValue};
+        setFormValues(newFormValues);
     };
 
-    const handleSubmit = (event) => {
-        
-        handleSubmitHelper(event);
-        props.createUser(formValues);
-        history.push("/login");
+    const handleSubmit = async(event) => {
+        event.preventDefault();
+        const valid = await signUpFormSchema.isValid(formValues);
+        setIsValid(valid);
+        if(valid){
+            props.createUser(formValues);
+            history.push("/login");
+        }
+        else{
+            for(let name in formValues){
+                validate(name,formValues[name]);
+            }
+        }
     };
 
     return (
@@ -131,7 +125,7 @@ function SignUp(props) {
                             className={'input'}
                         />
                         
-                        <button type="submit" disabled={!isValid}>
+                        <button type="submit">
                             Sign Up
                         </button>
                         {displayErrors(formErrors)}{" "}
@@ -144,7 +138,6 @@ function SignUp(props) {
 }
 
 const mapStateToProps = (state) => {
-  // console.log("!!!!!!!", state.api.createUser)
   return {
     api: state.api.createUser
   }
