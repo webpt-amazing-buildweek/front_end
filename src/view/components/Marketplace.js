@@ -47,9 +47,9 @@ const Marketplace=(props)=>{
     return (
 
 
-      <>
-        <div className={"flex mx-w-sm mx-auto px-40"}>
-          <div>
+      <div className={"flex flex-col text-center"}>
+        <div className={"mt-8 mb-20 mx-auto"}>
+          <div className={"absolute"}>
             <input 
             value={searchValue}
             placeholder="Search..."
@@ -58,7 +58,7 @@ const Marketplace=(props)=>{
           </div>
         </div>
         <ItemCards isLoading={apiStatus===API_START} items={searchItem} renderButtons={renderButtons}/>
-      </>
+      </div>
     );
 };
 const mapStateToProps=(state)=>{
