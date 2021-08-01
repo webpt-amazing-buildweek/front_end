@@ -25,9 +25,10 @@ const MyItems=(props)=>{
     useEffect(()=>{
         // initial API call on mount
         getItems();
+    },[getItems]);
+    useEffect(()=>{
         setInitialSearch([...myItems])
-    },[]);
-
+    },[myItems, setInitialSearch]);
 
     const handleSearchTerm = (e) => {
 
