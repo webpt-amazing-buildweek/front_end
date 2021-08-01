@@ -59,7 +59,6 @@ function SignUp(props) {
         event.preventDefault();
         const valid = await signUpFormSchema.isValid(formValues);
         setIsValid(valid);
-        console.log(valid,"!!!!!!!!!!!!!!!!!!!!!!!!!!")
         if(valid){
             props.createUser(formValues);
             history.push("/login");
@@ -139,7 +138,6 @@ function SignUp(props) {
 }
 
 const mapStateToProps = (state) => {
-  // console.log("!!!!!!!", state.api.createUser)
   return {
     api: state.api.createUser
   }
