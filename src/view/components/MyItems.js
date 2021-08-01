@@ -12,8 +12,8 @@ const MyItems=(props)=>{
     const {getItems,apiStatus,myItems} = props;
     
     const [searchItem, setSearchTerm, searchValue, setInitialSearch] = useSearchBar(myItems)
-    console.log(myItems)
-    console.log(searchItem)
+    // console.log(myItems)
+    // console.log(searchItem)
     useEffect(()=>{
         // initial API call on mount
         getItems();
@@ -72,8 +72,15 @@ const MyItems=(props)=>{
                     </>
                 </Route>
                 <Route path={`${match.path}`}>
-                    <>
-                      <div className={"flex mx-w-sm mx-auto px-40"}>
+                <div className={"flex flex-col text-center"}>
+                    <div className={"parallax-wrapper self-center bg-white text-black mt-96"}>
+                      <div
+                        className={
+                          "flex flex-row flex-wrap justify-center"
+                        }
+                        style={{backgroundColor:  "#a2a595"}}
+                      >
+                      <div className={"absolute -inset-y-0 rounded"}>
                           <div>
                             <input 
                               value={searchValue}
@@ -81,16 +88,13 @@ const MyItems=(props)=>{
                               onChange={handleSearchTerm}
                             />
                          </div>
-                        </div> 
+                      </div> 
+
                         <ItemCards isLoading={apiStatus===API_START} items={myItems} renderButtons={renderButtons}/>
-                        <div>spacer</div>
-                        <div>spacer</div>
-                        <div>spacer</div>
-                        <div>spacer</div>
-                        <div>spacer</div>
-                        <div>spacer</div>
                         <ItemForm apiCall={createItem}/>
-                    </>
+                      </div>  
+                    </div>
+                  </div>  
                 </Route>
             </Switch>
         </>
