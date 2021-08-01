@@ -72,6 +72,14 @@ function ItemForm(props) {
   const submit = (e) => {
     e.preventDefault();
     apiCall(form,id);
+    setForm({
+      item_name: "",
+      location: "",
+      quantity: "",
+      price: "",
+      description: "",
+      image_url:""
+    })
   }
   
   useEffect(() => {
@@ -82,110 +90,130 @@ function ItemForm(props) {
 }, [form])
 
   return (
-    <div>
-      <h2>Item Form</h2>
-      <form onSubmit={submit}>
-        <div>
-          <label htmlFor="item_name">
-            Item Name:
-            <input
-              type="text"
-              placeholder="Item Name"
-              id="item_name"
-              name="item_name"
-              value={form.item_name}
-              onChange={handleChange}
-            />
-          </label>
-          <div style={{ color: "red" }}>
-            <div>{errors.item_name}</div>
+  <form class="bg-white shadow-md rounded px-20 pt-2 pb-2 mb-4" style={{backgroundColor: '#b4a284', boxShadow: '0 0 1rem #000'}} onSubmit={submit}> 
+    <div class="w-full max-w-lg">
+      <div class="">
+     
+        <p class="block uppercase tracking-wide text-gray-700 text-lg font-bold mb-2">Add Item</p>
+          <div class="flex space-x-4 flex-wrap -mx-3 mb-6">
+            <div class="flex-auto mb-4" >
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="item_name">
+              Item Name
+              </label>
+              <input
+                class="shadow appearance-none block w-full bg-gray-200 text-gray-700 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type="text"
+                placeholder="item name"
+                id="item_name"
+                name="item_name"
+                value={form.item_name}
+                onChange={handleChange}
+              />
+              <div style={{ color: "red" }}>
+                <div>{errors.item_name}</div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="location">
+              Location
+              </label>  
+              <input
+                class="shadow appearance-none block w-full bg-gray-200 text-gray-700 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type="text"
+                placeholder="location"
+                id="location"
+                name="location"
+                value={form.location}
+                onChange={handleChange}
+              />
+          
+              <div style={{ color: "red" }}>
+                <div>{errors.location}</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex space-x-4 flex-wrap -mx-3 mb-6">
+            <div class="mb-4"> 
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="quantity">
+              Quantity
+              </label>
+              <input
+                class="shadow appearance-none block w-full bg-gray-200 text-gray-700 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type="number"
+                placeholder="quantity"
+                id="quantity"
+                name="quantity"
+                value={form.quantity}
+                onChange={handleChange}
+              />
+          
+              <div style={{ color: "red" }}>
+                <div>{errors.quantity}</div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="price">
+              Price
+              </label>
+              <input
+                class="shadow appearance-none block w-full bg-gray-200 text-gray-700 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type="number"
+                placeholder="price"
+                id="price"
+                name="price"
+                value={form.price}
+                onChange={handleChange}
+              />
+              <div style={{ color: "red" }}>
+                <div>{errors.price}</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex space-x-4 flex-wrap -mx-3 mb-6">
+            <div class="mb-4">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="description">
+              Description
+              </label>
+              <input
+                class="shadow appearance-none block w-full bg-gray-200 text-gray-700 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type="text"
+                placeholder="description"
+                id="description"
+                name="description"
+                value={form.description}
+                onChange={handleChange}
+              />
+              <div style={{ color: "red" }}>
+                <div>{errors.description}</div>
+              </div>
+            </div>
+            <div class="mb-4"> 
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="image_url">
+              Image URL
+              </label>  
+              <input
+                class="shadow appearance-none block w-full bg-gray-200 text-gray-700 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type="text"
+                placeholder="url"
+                id="image_url"
+                name="image_url"
+                value={form.image_url}
+                onChange={handleChange}
+              />
+              <div style={{ color: "red" }}>
+                <div>{errors.image_url}</div>
+            </div>
           </div>
         </div>
-        <div>
-          <label htmlFor="location">
-            Location:
-            <input
-              type="text"
-              placeholder="location"
-              id="location"
-              name="location"
-              value={form.location}
-              onChange={handleChange}
-            />
-          </label>
-          <div style={{ color: "red" }}>
-            <div>{errors.location}</div>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="quantity">
-          quantity:
-            <input
-              type="number"
-              placeholder="quantity"
-              id="quantity"
-              name="quantity"
-              value={form.quantity}
-              onChange={handleChange}
-            />
-          </label>
-          <div style={{ color: "red" }}>
-            <div>{errors.quantity}</div>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="price">
-          Price:
-            <input
-              type="number"
-              placeholder="price"
-              id="price"
-              name="price"
-              value={form.price}
-              onChange={handleChange}
-            />
-          </label>
-          <div style={{ color: "red" }}>
-            <div>{errors.price}</div>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="description">
-          Description:
-            <input
-              type="text"
-              placeholder="description"
-              id="description"
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-            />
-          </label>
-          <div style={{ color: "red" }}>
-            <div>{errors.description}</div>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="image_url">
-            Image URL
-            <input
-              type="text"
-              placeholder="url"
-              id="image_url"
-              name="image_url"
-              value={form.image_url}
-              onChange={handleChange}
-            />
-          </label>
-          <div style={{ color: "red" }}>
-            <div>{errors.image_url}</div>
-          </div>
-        </div>
-        <button disabled={disabled}>
+        <div class="flex items-center justify-between">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled={disabled}>
           Submit
         </button>
-      </form>
+        </div>
+     
+      </div>
     </div>
+  </form>
   )
 }
 
