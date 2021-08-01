@@ -74,12 +74,15 @@ export const postLogIn = (formValues, handleAPIStatus) => (dispatch) =>{
       handleAPIStatus(true);
     }
   })
-  .catch((err)=>{
-    dispatch({type:API_STATUS_CHANGE,payload:{
+  .catch(async(err)=>{
+    await dispatch({type:API_STATUS_CHANGE,payload:{
       status:API_FAILURE,
       api:"postLogIn",
       errMsg:err,
     }});
+    if(handleAPIStatus){
+      handleAPIStatus(false);
+    }
   });
 };
 
