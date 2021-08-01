@@ -10,21 +10,22 @@ import ItemForm from "./forms/ItemForm";
 import { useSearchBar } from "../../common/hooks/useSearchBar";
 const MyItems=(props)=>{
     const {getItems,apiStatus,myItems} = props;
-    
+
     const [searchItem, setSearchTerm, searchValue, setInitialSearch] = useSearchBar(myItems)
     // console.log(myItems)
     // console.log(searchItem)
+    // useEffect(()=>{
+    //     // initial API call on mount
+    //     getItems();
+    //     setInitialSearch([...myItems])
+    // },[getItems]);
+
+    const match = useRouteMatch();
+    // console.log("this is the my item page",match.path)
     useEffect(()=>{
         // initial API call on mount
         getItems();
         setInitialSearch([...myItems])
-    },[getItems]);
-
-    const match = useRouteMatch();
-    console.log("this is the my item page",match.path)
-    useEffect(()=>{
-        // initial API call on mount
-        getItems();
     },[getItems]);
 
 
@@ -90,7 +91,7 @@ const MyItems=(props)=>{
                          </div>
                       </div> 
 
-                        <ItemCards isLoading={apiStatus===API_START} items={myItems} renderButtons={renderButtons}/>
+                        <ItemCards isLoading={apiStatus===API_START} items={searchItem} renderButtons={renderButtons}/>
                         <ItemForm apiCall={createItem}/>
                       </div>  
                     </div>
