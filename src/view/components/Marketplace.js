@@ -48,8 +48,8 @@ const Marketplace=(props)=>{
 
 
       <>
-        <div className={"flex mx-w-sm mx-auto px-40"}>
-          <div>
+        <div className={"container border-black mt-8 mb-16 mx-auto"}>
+          <div className={""}>
             <input 
             value={searchValue}
             placeholder="Search..."

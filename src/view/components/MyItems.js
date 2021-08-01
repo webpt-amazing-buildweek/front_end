@@ -83,6 +83,7 @@ const MyItems=(props)=>{
                       <div className={"absolute -inset-y-0 rounded"}>
                           <div>
                             <input 
+                              className={"focus:border-green-800"}
                               value={searchValue}
                               placeholder="Search..."
                               onChange={handleSearchTerm}

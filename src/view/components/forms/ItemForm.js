@@ -206,7 +206,7 @@ function ItemForm(props) {
           </div>
         </div>
         <div class="flex items-center justify-between">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled={disabled}>
+          <button class="flex space-x-4 flex-wrap -mx-3 mb-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled={disabled}>
           Submit
         </button>
         </div>
