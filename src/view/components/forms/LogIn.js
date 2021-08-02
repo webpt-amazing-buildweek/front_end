@@ -8,7 +8,7 @@ import SnackBarMsg from "../../../common/utils/SnackBarMsg";
 // import { AppNav, AppHome, AppAbout, AppRecipes, AppChef, AppNutrition, AppCocktail } from "./view/components/index";
 
 const Schema = yup.object().shape({
-  username: yup.string().required("Email is Required"),
+  username: yup.string().required("User Name is Required"),
   password: yup.string().required("Not a valid Password")
 });
 
