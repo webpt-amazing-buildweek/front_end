@@ -6,6 +6,7 @@ import {
   USER_ITEMS_RECEIVED,
   USER_CART_ITEM_ADDED,
   USER_CART_ITEM_REMOVED,
+  USER_AUTH_CHECKED
 } from '../actionTypes';
 
 
@@ -27,10 +28,16 @@ export const removeFromCart=(id)=>{
 };
 
 // retain user state action
-// export const checkUserAuth =() => {
-//   const token = localStorage.getItem("user")
-//   return {type: USER_AUTH_CHECKED}
-// }
+export const checkUserAuth =() => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if(user){
+    return {type: USER_AUTH_CHECKED,payload:user};
+  }
+  else{
+    localStorage.clear();
+    return {type: USER_AUTH_CHECKED,payload:{}};
+  }
+}
 
 //Reducer
 export const userReducer = (state = userInitialState, action) => {
@@ -39,7 +46,6 @@ export const userReducer = (state = userInitialState, action) => {
     case USER_LOGGED_IN: {
       // backend may return a user object
       const {id, email, username, isOwner} = action.payload;
-      console.log("------->>>>>>", id)
       return {
         ...state,
         id,
@@ -83,6 +89,13 @@ export const userReducer = (state = userInitialState, action) => {
         ...state,
         cart:state.cart.filter((id)=>id!==itemId)
       }
+    }
+    case USER_AUTH_CHECKED:{
+      const user = action.payload;
+      return {
+        ...state,
+        ...user
+      };
     }
     default:
       return state;

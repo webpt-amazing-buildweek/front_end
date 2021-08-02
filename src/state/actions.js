@@ -17,6 +17,7 @@ import {
     logout as _logout,
     addToCart as _addToCart,
     removeFromCart as _removeFromCart,
+    checkUserAuth as _checkUserAuth
  } from "./user/user";
 
 
@@ -105,3 +106,4 @@ export const removeFromCart = _removeFromCart;
 // id: number;
 // actions: USER_AUTH_CHECKED,
 // state changed: user
+export const checkUserAuth = _checkUserAuth;
