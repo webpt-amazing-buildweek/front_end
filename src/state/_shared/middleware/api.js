@@ -69,7 +69,7 @@ export const postLogIn = (formValues, handleAPIStatus) => (dispatch) =>{
       // dispatch USER_LOGGED_IN payload: res.data
     await dispatch({type:USER_LOGGED_IN,payload:res.data}); // 
     localStorage.setItem("authToken",res.data.token) //save the authentication
-    localStorage.setItem('userObject', JSON.stringify(res.data))// save the user object in local storage
+    localStorage.setItem('user', JSON.stringify(res.data))// save the user object in local storage
     if(handleAPIStatus){
       handleAPIStatus(true);
     }

@@ -9,8 +9,6 @@ import { Button } from "@material-ui/core";
 const Marketplace=(props)=>{
     const {items, apiStatus,getItems} = props;
     const [searchItem, setSearchTerm, searchValue, setInitialSearch] = useSearchBar(items)
-    console.log(items)
-    console.log(searchItem)
     useEffect(()=>{
         // initial API call on mount
         getItems();
