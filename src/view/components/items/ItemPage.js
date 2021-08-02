@@ -5,6 +5,7 @@ import ItemForm from "../forms/ItemForm";
 const ItemPage=(props)=>{
     const params = useParams();
     const {myItems,apiCall} = props;
+    console.log(params)
     const item = myItems.find(item=>parseInt(params.id)===item.id);
     if(!item){
         return <div></div>;

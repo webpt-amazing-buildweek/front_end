@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import placeholder from "../../../assets/placeholder.png"
 const ItemCard=(props)=>{
     const {item,classes,expandItem,setExpandItem,renderButtons} = props;
@@ -46,6 +47,9 @@ const ItemCard=(props)=>{
                     >
                         ${item.price}
                     </Typography>
+                    <Link to="/itempage">
+                      View Item
+                    </Link>
                     <Button size="small" style={{color: 'white'}} onClick={()=>expandItem===id?setExpandItem(-1):setExpandItem(id)}>
                         {expandItem===id? <ExpandLessIcon/>:<ExpandMoreIcon />}
                     </Button>

@@ -19,7 +19,7 @@ export const useSearchBar = (initialItems) => {
 
       
       setItems(initialItemState.filter((item)=>{
-        console.log(item)
+        // console.log(item)
           for(const key in item){
               // loop through all the keys in the object, return true if the string includes the searchTerm
               if(typeof(item[key]) === 'string' && item[key].includes(searchTerm)){

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import {connect} from "react-redux";
-import {Marketplace,MyItem} from "./components/index";
+import { Marketplace, MyItem, ItemPage} from "./components/index";
 
 // Template Created 
 const PrivateRoute = (props) => {
@@ -15,6 +15,7 @@ const PrivateRoute = (props) => {
                 <Switch>
                     <Route path="/marketplace" {...props} component={Marketplace} />
                     <Route path="/myitems" {...props} component={MyItem} />
+                    <Route path="/itempage" {...props} component={ItemPage}/>
                     <Redirect path="/" to={"/"}/>
                 </Switch>
             );
@@ -23,6 +24,7 @@ const PrivateRoute = (props) => {
             return(
                 <Switch>
                     <Route path={"/marketplace"} {...props} component={Marketplace} />
+                    <Route path="/itempage" {...props} component={ItemPage}/>
                     <Redirect path="/" to={"/"}/>
                 </Switch>
             )
