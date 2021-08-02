@@ -26,10 +26,11 @@ const MyItems=(props)=>{
         // initial API call on mount
         getItems();
         setInitialSearch([...myItems])
-    },[getItems]);
+    },[]);
 
 
     const handleSearchTerm = (e) => {
+
       setSearchTerm(e.target.value)
     }
 
