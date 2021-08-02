@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { Button } from "@material-ui/core";
+import placeholder from "../../../assets/placeholder.png"
 const ItemCard=(props)=>{
     const {item,classes,expandItem,setExpandItem,renderButtons} = props;
     const {id} = item;
@@ -16,7 +17,7 @@ const ItemCard=(props)=>{
             <CardActionArea className={classes.action}>
                 <CardMedia
                     className={classes.media}
-                    image={item.image_url}
+                    image={item.image_url?item.image_url:placeholder}
                     title={item.item_name}
                 />
                 <CardContent>

@@ -25,9 +25,10 @@ const MyItems=(props)=>{
     useEffect(()=>{
         // initial API call on mount
         getItems();
+    },[getItems]);
+    useEffect(()=>{
         setInitialSearch([...myItems])
-    },[]);
-
+    },[myItems, setInitialSearch]);
 
     const handleSearchTerm = (e) => {
 
@@ -85,9 +86,10 @@ const MyItems=(props)=>{
                       <div className={"absolute -inset-y-0 rounded"}>
                           <div>
                             <input 
-                              value={searchValue}
-                              placeholder="Search..."
-                              onChange={handleSearchTerm}
+                                className={"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-800"}
+                                value={searchValue}
+                                placeholder="Search..."
+                                onChange={handleSearchTerm}
                             />
                          </div>
                       </div> 

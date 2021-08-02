@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import * as yup from 'yup'
 import { connect } from "react-redux"
@@ -25,7 +25,6 @@ const initialErrorValues = Object.keys(initialValues).reduce((acc, key) => {
 
 function SignUp(props) {
     const history = useHistory();
-    const [isValid, setIsValid] = useState(true);
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState(initialErrorValues);
 
@@ -39,7 +38,6 @@ function SignUp(props) {
               setFormErrors((prevErr)=>({
                 ...prevErr, [name]: ""
               }))
-              setIsValid(valid);
            })
            .catch( error => {
              setFormErrors((prevErr)=>({
@@ -58,7 +56,6 @@ function SignUp(props) {
     const handleSubmit = async(event) => {
         event.preventDefault();
         const valid = await signUpFormSchema.isValid(formValues);
-        setIsValid(valid);
         if(valid){
             props.createUser(formValues);
             history.push("/login");
