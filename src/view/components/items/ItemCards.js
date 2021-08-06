@@ -53,11 +53,11 @@ const ItemCards = (props) => {
     );
   } else {
     return (
-      <div className={"flex flex-col text-center"}>
-        <div className={"parallax-wrapper self-center bg-white text-white mt-96"}>
+      <div>
+        <div >
           <div
             className={
-              "flex flex-row flex-wrap justify-center w-screen h-auto p-32 -my-48 shadow-inner "
+              "flex flex-row flex-wrap justify-center w-screen h-auto p-32 -my-48 -mb-1 shadow-inner "
             }
             style={{backgroundColor:  "#a2a595"}}
           >

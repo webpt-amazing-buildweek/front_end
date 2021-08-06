@@ -8,8 +8,13 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import StorefrontIcon from '@material-ui/icons/Storefront';
+import PersonIcon from '@material-ui/icons/Person';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import HomeIcon from '@material-ui/icons/Home';
+import ViewListIcon from '@material-ui/icons/ViewList';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { logout } from "../../../src/state/actions";
@@ -45,13 +50,13 @@ function Nav(props) {
       <>  
       <ListItem button onClick={()=>{handleDrawerClose();history.push("/login");}}>
         <ListItemIcon>
-          <LibraryBooksIcon />
+          <PersonIcon />
         </ListItemIcon>
             <ListItemText primary="Log In" />
       </ListItem>
       <ListItem button onClick={()=>{handleDrawerClose();history.push("/signup")}}>
         <ListItemIcon>
-          <LibraryBooksIcon />
+          <PersonAddIcon />
         </ListItemIcon>
             <ListItemText primary="Sign Up" />
       </ListItem>
@@ -64,7 +69,7 @@ function Nav(props) {
       <>
       <ListItem button onClick={()=>{handleDrawerClose();history.push("/marketplace")}}>
         <ListItemIcon>
-          <LibraryBooksIcon />
+          <StorefrontIcon />
         </ListItemIcon>
             <ListItemText primary="Marketplace" />
       </ListItem>
@@ -73,7 +78,7 @@ function Nav(props) {
         <>
           <ListItem button onClick={()=>{handleDrawerClose();history.push("/myitems")}}>
             <ListItemIcon>
-              <LibraryBooksIcon />
+              <ViewListIcon />
             </ListItemIcon>
                 <ListItemText primary="My Items" />
           </ListItem>
@@ -82,7 +87,7 @@ function Nav(props) {
         <>
         <ListItem button onClick={()=>{handleDrawerClose();history.push("/cart")}}>
           <ListItemIcon>
-            <LibraryBooksIcon />
+            <ShoppingCartIcon />
           </ListItemIcon>
             <ListItemText primary="Cart" />
         </ListItem>
@@ -91,7 +96,7 @@ function Nav(props) {
       
       <ListItem button onClick={()=>{handleLogout();history.push("/");}}>
         <ListItemIcon>
-          <LibraryBooksIcon />
+          <DirectionsRunIcon />
         </ListItemIcon>
           <ListItemText primary="Logout" />
       </ListItem>
@@ -137,7 +142,7 @@ function Nav(props) {
         {renderUserNav()}
           <ListItem button>
             <ListItemIcon>
-            <EmojiPeopleIcon />
+            <HomeIcon />
             </ListItemIcon>
               <ListItemText primary="Home" />
           </ListItem>

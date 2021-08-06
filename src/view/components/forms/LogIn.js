@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { connect } from "react-redux";
-import { postLogIn } from "../../../state/actions"
+import { postLogIn } from "../../../state/actions";
+import SnackBarMsg from "../../../common/utils/SnackBarMsg";
 // import "tailwindcss/dist/tailwind.css";
 // import { AppNav, AppHome, AppAbout, AppRecipes, AppChef, AppNutrition, AppCocktail } from "./view/components/index";
 
 const Schema = yup.object().shape({
-  username: yup.string().required("Email is Required"),
+  username: yup.string().required("User Name is Required"),
   password: yup.string().required("Not a valid Password")
 });
 
@@ -25,11 +26,16 @@ function LoginForm(props) {
   });
 
   const [isValid, setIsValid] = useState(true);
+  const [showAPIErr, setShowAPIErr] = useState(false);
+
 
   const history = useHistory();
   const handleAPIStatus=(isSuccessful)=>{
     if(isSuccessful){
       history.push("/marketplace");
+    }
+    else{
+      setShowAPIErr(true);
     }
   }
   const formSubmit = (e) => {
@@ -72,7 +78,7 @@ function LoginForm(props) {
         {/* <h2>Login</h2> */}
         <form onSubmit={formSubmit} className={"w-full max-w-sm"}>
             <div className="md:flex md:items-center mb-6">
-              <div class="md:w-1/3">
+              <div className="md:w-1/3">
                 <label htmlFor="username" className={"block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"}>
                   Username:
                 </label>
@@ -91,7 +97,7 @@ function LoginForm(props) {
               </div>
             </div>
             <div className="md:flex md:items-center mb-6">
-              <div class="md:w-1/3">
+              <div className="md:w-1/3">
                 <label htmlFor="password" className={"block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"}>
                   Password:
                 </label>
@@ -118,6 +124,11 @@ function LoginForm(props) {
         </form>
       </div>
     </div>
+    {
+      showAPIErr?
+      <SnackBarMsg severity="error">Incorrect username or password</SnackBarMsg>
+      :""
+    }
   </div>
   );
 }
@@ -125,7 +136,7 @@ function LoginForm(props) {
 const mapStateToProps = (state) => {
   return {
     numberOfSuccessCalls: state.api.postLogIn,
-    status: state.api.postLogIn.status
+    status: state.api.postLogIn.status,
   }
 }
 

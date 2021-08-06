@@ -10,25 +10,28 @@ import ItemForm from "./forms/ItemForm";
 import { useSearchBar } from "../../common/hooks/useSearchBar";
 const MyItems=(props)=>{
     const {getItems,apiStatus,myItems} = props;
-    
+
     const [searchItem, setSearchTerm, searchValue, setInitialSearch] = useSearchBar(myItems)
-    console.log(myItems)
-    console.log(searchItem)
-    useEffect(()=>{
-        // initial API call on mount
-        getItems();
-        setInitialSearch([...myItems])
-    },[getItems]);
+    // console.log(myItems)
+    // console.log(searchItem)
+    // useEffect(()=>{
+    //     // initial API call on mount
+    //     getItems();
+    //     setInitialSearch([...myItems])
+    // },[getItems]);
 
     const match = useRouteMatch();
-    console.log("this is the my item page",match.path)
+    // console.log("this is the my item page",match.path)
     useEffect(()=>{
         // initial API call on mount
         getItems();
     },[getItems]);
-
+    useEffect(()=>{
+        setInitialSearch([...myItems])
+    },[myItems, setInitialSearch]);
 
     const handleSearchTerm = (e) => {
+
       setSearchTerm(e.target.value)
     }
 
@@ -72,25 +75,30 @@ const MyItems=(props)=>{
                     </>
                 </Route>
                 <Route path={`${match.path}`}>
-                    <>
-                      <div className={"flex mx-w-sm mx-auto px-40"}>
+                <div className={"flex flex-col text-center"}>
+                    <div className={"parallax-wrapper self-center bg-white text-black mt-96"}>
+                      <div
+                        className={
+                          "flex flex-row flex-wrap justify-center"
+                        }
+                        style={{backgroundColor:  "#a2a595"}}
+                      >
+                      <div className={"absolute -inset-y-0 rounded"}>
                           <div>
                             <input 
-                              value={searchValue}
-                              placeholder="Search..."
-                              onChange={handleSearchTerm}
+                                className={"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-800"}
+                                value={searchValue}
+                                placeholder="Search..."
+                                onChange={handleSearchTerm}
                             />
                          </div>
-                        </div> 
-                        <ItemCards isLoading={apiStatus===API_START} items={myItems} renderButtons={renderButtons}/>
-                        <div>spacer</div>
-                        <div>spacer</div>
-                        <div>spacer</div>
-                        <div>spacer</div>
-                        <div>spacer</div>
-                        <div>spacer</div>
+                      </div> 
+
+                        <ItemCards isLoading={apiStatus===API_START} items={searchItem} renderButtons={renderButtons}/>
                         <ItemForm apiCall={createItem}/>
-                    </>
+                      </div>  
+                    </div>
+                  </div>  
                 </Route>
             </Switch>
         </>

@@ -1,12 +1,17 @@
 import "./App.css";
 import "tailwindcss/dist/tailwind.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Nav, Home, SignUp, LogIn } from "./view/components/index";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./view/PrivateRoute";
+import {connect} from "react-redux";
+import { checkUserAuth } from "./state/actions";
 
-
-function App() {
+function App(props) {
+  const {checkUserAuth} = props;
+  useEffect(()=>{
+    checkUserAuth();
+  },[checkUserAuth]);
   return (
     <Router>
       <div className="App">
@@ -32,8 +37,12 @@ function App() {
     </Router>
   );
 }
-
-export default App;
+const mapDispatchToProps=(dispatch)=>{
+  return {
+    checkUserAuth:()=>dispatch(checkUserAuth())
+  }
+};
+export default connect(null,mapDispatchToProps)(App);
 
 // Public routes
 // /home
