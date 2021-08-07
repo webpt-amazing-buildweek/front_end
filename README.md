@@ -9,6 +9,33 @@ Sauti Marketplace is an online commerce platform to improve the shopper experien
 - backend: [Tony Miller](https://github.com/artofmayhem), [Rhiannon Stanford](https://github.com/Qirhi)
 - frontend: [Chris Lau](https://github.com/chrislauyc), [Durrell Jules](https://github.com/dujules23), [Jacob Brooks](https://github.com/jacob-bro), [Jacob Bevans](https://github.com/jlbevans), [Aidan Jenkins](https://github.com/AidanJJenkins)
 
+## App Organization & Structure
+
+### Redux States
+
+- api status
+- user
+- items
+
+### Logged Out Pages
+
+- Home
+- sign-up
+- log-in
+
+
+### Shopper Pages
+
+- Home
+- Marketplace
+
+### Shop Owner Pages
+
+- Home
+- Marketplace
+- MyItems
+
+
 ## Installed Dependencies
     - Craco
         - npm install @craco/craco --save
