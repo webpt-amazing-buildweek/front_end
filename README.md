@@ -1,4 +1,13 @@
-# front_end
+# Sauti Marketplace
+
+Sauti Marketplace is an online commerce platform to improve the shopper experience and provide opportunities for shop owners to expand their businesses in Africa. 
+
+[Link to deployed site](https://teamamazing.netlify.app)
+
+## Software Developers
+
+- backend: [Tony Miller](https://github.com/artofmayhem), [Rhiannon Stanford](https://github.com/Qirhi)
+- frontend: [Chris Lau](https://github.com/chrislauyc), [Durrell Jules](https://github.com/dujules23), [Jacob Brooks](https://github.com/jacob-bro), [Jacob Bevans](https://github.com/jlbevans), [Aidan Jenkins](https://github.com/AidanJJenkins)
 
 ## Installed Dependencies
     - Craco
