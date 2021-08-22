@@ -151,7 +151,7 @@ function Nav(props) {
         }}
       >
       <List className={classes.list}>
-          <ListItem button>
+          <ListItem button onClick={()=>{handleLogout();history.push("/");}}>
             <ListItemIcon>
             <HomeIcon />
             </ListItemIcon>
