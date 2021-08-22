@@ -30,7 +30,10 @@ const PrivateRoute = (props) => {
     }
     //Redirects to the the home page
     return (
-        <Redirect to="/" />
+        <Switch>
+            <Route path={"/marketplace"} {...props} component={Marketplace} />
+            <Redirect path="/" to={"/"}/>
+        </Switch>
     )
 }
 const mapStateToProps = (state) =>{
