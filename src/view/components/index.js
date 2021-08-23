@@ -8,7 +8,7 @@ import _SignUp from "./forms/SignUp";
 import _Marketplace from "./Marketplace";
 import _MyItem from "./MyItems"
 import _ItemForm from "./forms/ItemForm";
-
+import _Cart from "./Cart";
 
 export {
   _Nav as Nav,
@@ -19,5 +19,6 @@ export {
   _SignUp as SignUp,
   _Marketplace as Marketplace,
   _MyItem as MyItem,
-  _ItemForm as ItemForm
+  _ItemForm as ItemForm,
+  _Cart as Cart
 };
