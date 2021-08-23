@@ -2,7 +2,7 @@
 
 Sauti Marketplace is an online commerce platform to improve the shopper experience and provide opportunities for shop owners to expand their businesses in Africa. 
 
-[Link to deployed site](https://teamamazing.netlify.app)
+[Link to deployed site](https://sauti-online-marketplace.netlify.app)
 
 ## Software Developers
 
