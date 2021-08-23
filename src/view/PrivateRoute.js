@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import {connect} from "react-redux";
 import {Cart, Marketplace,MyItem} from "./components/index";
+import Checkout from "./components/Checkout";
 
 // Template Created 
 const PrivateRoute = (props) => {
@@ -24,7 +25,7 @@ const PrivateRoute = (props) => {
                 <Switch>
                     <Route path={"/marketplace"} {...props} component={Marketplace} />
                     <Route path={"/cart"} {...props} component={Cart} />
-                    <Route path={"/checkout"} {...props} component={Cart} />
+                    <Route path={"/checkout"} {...props} component={Checkout} />
                     <Redirect path="/" to={"/"}/>
                 </Switch>
             )
