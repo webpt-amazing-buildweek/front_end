@@ -48,6 +48,18 @@ function Nav(props) {
     if (props.user.id === -1) {
       return (
       <>  
+      <ListItem button onClick={()=>{handleDrawerClose();history.push("/marketplace")}}>
+        <ListItemIcon>
+          <StorefrontIcon />
+        </ListItemIcon>
+            <ListItemText primary="Marketplace" />
+      </ListItem>
+      <ListItem button onClick={()=>{handleDrawerClose();history.push("/cart")}}>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+          <ListItemText primary="Cart" />
+      </ListItem>
       <ListItem button onClick={()=>{handleDrawerClose();history.push("/login");}}>
         <ListItemIcon>
           <PersonIcon />
@@ -139,13 +151,13 @@ function Nav(props) {
         }}
       >
       <List className={classes.list}>
-        {renderUserNav()}
           <ListItem button>
             <ListItemIcon>
             <HomeIcon />
             </ListItemIcon>
               <ListItemText primary="Home" />
           </ListItem>
+          {renderUserNav()}
         </List>
       </Drawer>
     </>
